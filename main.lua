@@ -27,16 +27,18 @@ function love.load()
     -- seed the RNG so that calls to random are always random
     math.randomseed(os.time())
 
-    -- set the application title bar
     love.window.setTitle('Immune Cell')
 
-    -- initialize our nice-looking retro text fonts
     gFonts = {
         ['small'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 24),
         ['medium'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 48),
         ['large'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 96)
     }
     love.graphics.setFont(gFonts['small'])
+
+    gTextures = {
+    	['background'] = love.graphics.newImage('graphics/background.png')
+    }
 
     
     -- initialize our virtual resolution, which will be rendered within our
@@ -124,16 +126,14 @@ function love.draw()
 
     -- background should be drawn regardless of state, scaled to fit our
     -- virtual resolution
-    local backgroundWidth = 1280 --gTextures['background']:getWidth()
-    local backgroundHeight = 720 --gTextures['background']:getHeight()
+    local backgroundWidth = gTextures['background']:getWidth()
+    local backgroundHeight = gTextures['background']:getHeight()
 
-    -- love.graphics.draw(gTextures['background'], 
-    --     -- draw at coordinates 0, 0
-    --     0, 0, 
-    --     -- no rotation
-    --     0,
-    --     -- scale factors on X and Y axis so it fills the screen
-    --     VIRTUAL_WIDTH / (backgroundWidth - 1), VIRTUAL_HEIGHT / (backgroundHeight - 1))
+    love.graphics.draw(gTextures['background'], 
+        -- draw at coordinates 0, 0
+        0, 0, 
+        -- no rotation
+        0)
     
     -- use the state machine to defer rendering to the current state we're in
     gStateMachine:render()
