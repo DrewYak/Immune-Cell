@@ -21,6 +21,7 @@ function StartState:update(dt)
     -- toggle highlighted option if we press an arrow key up or down
     if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then
         highlighted = 1 + highlighted % 2
+        gSounds['hit']:play()
     end
 
     -- we no longer have this globally, so include here
