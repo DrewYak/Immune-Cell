@@ -26,3 +26,4 @@ require 'src/StateMachine'
 -- each frame, to avoid bulky code in main.lua
 require 'src/states/BaseState'
 require 'src/states/StartState'
+require 'src/states/PlayState'

@@ -56,6 +56,7 @@ function love.load()
 
     gSounds = {
         ['hit'] = love.audio.newSource('sounds/hit.wav', 'static'),
+        ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
         ['pause'] = love.audio.newSource('sounds/pause.wav', 'static')
     }
 

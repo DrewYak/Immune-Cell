@@ -24,6 +24,14 @@ function StartState:update(dt)
         gSounds['hit']:play()
     end
 
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gSounds['confirm']:play()
+        
+        if highlighted == 1 then
+            gStateMachine:change('play')
+        end
+    end
+
     -- we no longer have this globally, so include here
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
