@@ -54,6 +54,10 @@ function love.load()
         resizable = true
     })
 
+    gSounds = {
+        ['pause'] = love.audio.newSource('sounds/pause.wav', 'static')
+    }
+
     -- the state machine we'll be using to transition between various states
     -- in our game instead of clumping them together in our update and draw
     -- methods
@@ -61,7 +65,8 @@ function love.load()
     -- our current game state can be any of the following:
     -- 1. 'start' (the beginning of the game, where we're told to press Enter)
     gStateMachine = StateMachine {
-        ['start'] = function() return StartState() end
+        ['start'] = function() return StartState() end,
+        ['play'] = function() return PlayState() end
     }
     gStateMachine:change('start')
 
