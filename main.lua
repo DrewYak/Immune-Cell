@@ -37,8 +37,13 @@ function love.load()
     love.graphics.setFont(gFonts['small'])
 
     gTextures = {
-    	['background'] = love.graphics.newImage('graphics/background.png')
+    	['background'] = love.graphics.newImage('graphics/background.png'),
+        ['viruses'] = love.graphics.newImage('graphics/viruses.png')
     }
+
+    gFrames = {
+        ['viruses'] = GenerateQuads(gTextures['viruses'], 7, 6)
+    } 
 
     
     -- initialize our virtual resolution, which will be rendered within our
