@@ -2,6 +2,8 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.cell = nil
+
+    self.virus = Virus(18)
 end
 
 function PlayState:update(dt)
@@ -17,8 +19,10 @@ function PlayState:update(dt)
         gSounds['pause']:play()
         return
     end
+
+    self.virus:update(dt)
 end
 
 function PlayState:render()
-
+    self.virus:render()
 end

@@ -42,7 +42,7 @@ function love.load()
     }
 
     gFrames = {
-        ['viruses'] = GenerateQuads(gTextures['viruses'], 7, 6)
+        ['viruses'] = GenerateQuadsViruses(gTextures['viruses'])
     } 
 
     
