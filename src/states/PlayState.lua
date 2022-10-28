@@ -3,7 +3,7 @@ PlayState = Class{__includes = BaseState}
 function PlayState:init()
     self.cell = nil
 
-    self.virus = Virus(18)
+    self.virus = Virus(20)
 end
 
 function PlayState:update(dt)
