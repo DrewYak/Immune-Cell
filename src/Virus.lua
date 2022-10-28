@@ -1,17 +1,21 @@
 Virus = Class{}
 
 function Virus:init(number)
-	self.x = 0
-	self.y = VIRTUAL_HEIGHT / 2
-	self.r = 0
+	-- actual quad's sizes!
+	-- initialize before self.x and self.y
+	self.width = 256
+	self.height = 256
+
+	self.x = -self.width * VIRUS_SCALE
+	self.y = math.random(self.height * VIRUS_SCALE / 2, 
+		VIRTUAL_HEIGHT - self.height * VIRUS_SCALE / 2)
+	self.r = math.random() * 2 * math.pi
 	self.direction = math.random(0, 1) * 2 - 1
 
 	self.dx = VIRUS_SPEED_X
 	self.dy = math.random(VIRUS_SPEED_Y / 10, VIRUS_SPEED_Y)
 	self.dr = VIRUS_ROT_SPEED
 
-	self.width = 256
-	self.height = 256
 
 	self.number = number
 
