@@ -3,7 +3,7 @@ PlayState = Class{__includes = BaseState}
 function PlayState:init()
     self.cell = nil
 
-    self.virus = Virus(20)
+    self.viruses = LevelMaker.createViruses(40000)
 end
 
 function PlayState:update(dt)
@@ -20,9 +20,14 @@ function PlayState:update(dt)
         return
     end
 
-    self.virus:update(dt)
+    for i = 1, #self.viruses do
+        self.viruses[i]:update(dt)
+    end
+
 end
 
 function PlayState:render()
-    self.virus:render()
+    for i = 1, #self.viruses do
+        self.viruses[i]:render()
+    end
 end
