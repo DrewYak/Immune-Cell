@@ -13,3 +13,8 @@ function LevelMaker.createViruses(count)
 
     return viruses
 end
+
+function LevelMaker.createCell()
+    cell = Cell()
+    return cell
+end

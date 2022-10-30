@@ -17,7 +17,7 @@ require 'src/constants'
 
 require 'src/Virus'
 require 'src/LevelMaker'
-
+require 'src/Cell'
 
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
