@@ -31,9 +31,17 @@ function Virus:update(dt)
 	self.r = self.r + self.dr * dt
 end
 
+function Virus:hit()
+	gSounds['virus-hit']:play()
+	
+	self.inPlay = false
+end
+
 function Virus:render()
-	love.graphics.draw(gTextures['viruses'],
-		gFrames['viruses'][self.number],
-		self.x, self.y, self.r, 
-		VIRUS_SCALE, VIRUS_SCALE, self.width / 2, self.height / 2)
+	if self.inPlay then
+		love.graphics.draw(gTextures['viruses'],
+			gFrames['viruses'][self.number],
+			self.x, self.y, self.r, 
+			VIRUS_SCALE, VIRUS_SCALE, self.width / 2, self.height / 2)
+	end
 end

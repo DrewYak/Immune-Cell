@@ -46,6 +46,11 @@ function Cell:update(dt)
     end
 end
 
+function Cell:collides(target)
+    return ((self.x + self.width / 2) - (target.x))^2 + 
+    ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE^2
+end
+
 function Cell:render()
     love.graphics.draw(gTextures['cell'], self.x, self.y, 0, scale_cell, scale_cell)
 end

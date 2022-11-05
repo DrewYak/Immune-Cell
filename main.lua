@@ -58,7 +58,9 @@ function love.load()
     gSounds = {
         ['hit'] = love.audio.newSource('sounds/hit.wav', 'static'),
         ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
-        ['pause'] = love.audio.newSource('sounds/pause.wav', 'static')
+        ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
+        ['virus-hit'] = love.audio.newSource('sounds/virus-hit.wav', 'static'),
+        ['victory'] = love.audio.newSource('sounds/victory2.mp3', 'static')
     }
 
     -- the state machine we'll be using to transition between various states
