@@ -14,7 +14,18 @@ function LevelMaker.createViruses(count)
     return viruses
 end
 
-function LevelMaker.createCell()
-    cell = Cell()
+function LevelMaker.createCell(isSelected, speedIncrease)
+    cell = Cell(isSelected, speedIncrease)
     return cell
+end
+
+function LevelMaker.createCells(count)
+    local cells = {}
+
+    for i = 1, count do
+        cell = LevelMaker.createCell(False, 1)
+        table.insert(cells, cell)
+    end
+
+    return cells
 end

@@ -1,6 +1,6 @@
 Cell = Class{}
 
-function Cell:init()
+function Cell:init(isSelected, speedIncrease)
     scale_cell = 128 / 952
 
     -- self.width and self.height
@@ -14,24 +14,38 @@ function Cell:init()
 
     self.dx = 0
     self.dy = 0
+
+    self.isSelected = isSelected
+    self.speedIncrease = speedIncrease
 end
 
 function Cell:update(dt)
-    if love.keyboard.isDown('left') then
-        self.dx = -CELL_SPEED
-    elseif love.keyboard.isDown('right') then
-        self.dx = CELL_SPEED
+    if self.isSelected then
+        if love.keyboard.isDown('left') then
+            self.dx = -CELL_SPEED
+        elseif love.keyboard.isDown('right') then
+            self.dx = CELL_SPEED
+        else
+            self.dx = 0
+        end
+            
+        if love.keyboard.isDown('up') then
+            self.dy = -CELL_SPEED
+        elseif love.keyboard.isDown('down') then
+            self.dy = CELL_SPEED
+        else
+            self.dy = 0
+        end
     else
-        self.dx = 0
+        if lastTime == nil or os.time() - lastTime >= math.random(0, 40)  then
+            self.dx = CELL_SPEED * (math.random(0, 1) * 2 - 1)
+            self.dy = CELL_SPEED * (math.random(0, 1) * 2 - 1) 
+            lastTime = os.time()
+        end
     end
-        
-    if love.keyboard.isDown('up') then
-        self.dy = -CELL_SPEED
-    elseif love.keyboard.isDown('down') then
-        self.dy = CELL_SPEED
-    else
-        self.dy = 0
-    end
+
+    self.dx = self.dx * self.speedIncrease
+    self.dy = self.dy * self.speedIncrease
 
     if self.dx < 0 then
         self.x = math.max(0, self.x + self.dx * dt)
