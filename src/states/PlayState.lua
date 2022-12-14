@@ -1,7 +1,9 @@
 PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
-    self.cells = LevelMaker.createCells(10)
+    self.cells = LevelMaker.createCells(0)
+    self.cell = LevelMaker.createCell(true, 1)
+
     self.viruses = LevelMaker.createViruses(50)
 end
 
@@ -23,6 +25,8 @@ function PlayState:update(dt)
         c:update(dt)
     end
 
+    self.cell:update(dt)
+
     for i, v in pairs(self.viruses) do
         v:update(dt)
         for j, c in pairs(self.cells) do
@@ -31,6 +35,12 @@ function PlayState:update(dt)
                 table.remove(self.viruses, i)
                 break
             end
+        end
+        
+        if self.cell:collides(v) then 
+            v:hit()
+            table.remove(self.viruses, i)
+            break
         end
     end
 
@@ -48,6 +58,8 @@ function PlayState:render()
     for i, c in pairs(self.cells) do
         c:render()
     end
+
+    self.cell:render()
 
     love.graphics.print('Virus count: ' .. tostring(table.getn(self.viruses)), 105, 5)
 end
