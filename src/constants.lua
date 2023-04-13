@@ -15,6 +15,10 @@ VIRUS_SCALE = 0.5
 
 CELL_SPEED = 250
 
-TOTAL_VIRUSES = 20
+--the number of viruses on the sprite
+TOTAL_VIRUSES = 42
+
+--number of viruses to generate
+COUNT_VIRUSES = 20
 
 COLLISION_DISTANCE = 40
