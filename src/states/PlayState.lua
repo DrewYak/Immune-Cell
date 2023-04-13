@@ -4,7 +4,7 @@ function PlayState:init()
     self.cells = LevelMaker.createCells(0)
     self.cell = LevelMaker.createCell(true, 1)
 
-    self.viruses = LevelMaker.createViruses(10)
+    self.viruses = LevelMaker.createViruses(TOTAL_VIRUSES)
 end
 
 function PlayState:update(dt)

@@ -17,5 +17,6 @@ end
 
 function GameOverState:render()
 	love.graphics.setFont(gFonts['large'])
-	love.graphics.printf('GAME OVER', 0, VIRTUAL_HEIGHT / 3, VIRTUAL_WIDTH, 'center')
+	love.graphics.printf('GAME OVER', 0, VIRTUAL_HEIGHT / 3, 
+		VIRTUAL_WIDTH, 'center')
 end

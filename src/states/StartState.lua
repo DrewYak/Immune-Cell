@@ -44,27 +44,31 @@ function StartState:render()
     love.graphics.setColor(1/255, 102/255, 169/255, 1)
     love.graphics.printf("IMMUNE CELL", 0, VIRTUAL_HEIGHT / 3,
         VIRTUAL_WIDTH, 'center')
-    love.graphics.setColor(1, 1, 1, 1)
     
-    -- instructions
+    -- menu
     love.graphics.setFont(gFonts['medium'])
 
-    -- if we're highlighting 1, render that option blue
+
     if highlighted == 1 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
+        love.graphics.printf("=> START <=", 0, VIRTUAL_HEIGHT / 2 + 70,
+            VIRTUAL_WIDTH, 'center')
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.printf("START", 0, VIRTUAL_HEIGHT / 2 + 70,
+            VIRTUAL_WIDTH, 'center')
     end
-    love.graphics.printf("START", 0, VIRTUAL_HEIGHT / 2 + 70,
-        VIRTUAL_WIDTH, 'center')
 
-    -- reset the color
-    love.graphics.setColor(1, 1, 1, 1)
 
-    -- render option 2 blue if we're highlighting that one
     if highlighted == 2 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
+        love.graphics.printf("=> HIGH SCORES <=", 0, VIRTUAL_HEIGHT / 2 + 140,
+            VIRTUAL_WIDTH, 'center')
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 140,
+            VIRTUAL_WIDTH, 'center')
     end
-    love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 140,
-        VIRTUAL_WIDTH, 'center')
 
     -- reset the color
     love.graphics.setColor(1, 1, 1, 1)
