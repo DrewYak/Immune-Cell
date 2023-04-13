@@ -71,7 +71,8 @@ function love.load()
     -- 1. 'start' (the beginning of the game, where we're told to press Enter)
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
-        ['play'] = function() return PlayState() end
+        ['play'] = function() return PlayState() end,
+        ['game over'] = function() return GameOverState() end
     }
     gStateMachine:change('start')
 

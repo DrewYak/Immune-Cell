@@ -4,7 +4,7 @@ function PlayState:init()
     self.cells = LevelMaker.createCells(0)
     self.cell = LevelMaker.createCell(true, 1)
 
-    self.viruses = LevelMaker.createViruses(50)
+    self.viruses = LevelMaker.createViruses(10)
 end
 
 function PlayState:update(dt)
@@ -47,6 +47,7 @@ function PlayState:update(dt)
     if table.getn(self.viruses) == 0 then
         gSounds['victory']:play()
         self.paused = true
+        gStateMachine:change('game over')
     end
 end
 

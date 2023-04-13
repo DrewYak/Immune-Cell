@@ -146,8 +146,8 @@ function push:start()
     love.graphics.push()
     love.graphics.scale(self._SCALE.x, self._SCALE.y)
   end
-end
 
+end
 function push:applyShaders(canvas, shaders)
   local _shader = love.graphics.getShader()
   if #shaders <= 1 then
