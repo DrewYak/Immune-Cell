@@ -48,7 +48,6 @@ function StartState:render()
     -- menu
     love.graphics.setFont(gFonts['medium'])
 
-
     if highlighted == 1 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
         love.graphics.printf("=> START <=", 0, VIRTUAL_HEIGHT / 2 + 70,
@@ -58,7 +57,6 @@ function StartState:render()
         love.graphics.printf("START", 0, VIRTUAL_HEIGHT / 2 + 70,
             VIRTUAL_WIDTH, 'center')
     end
-
 
     if highlighted == 2 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
