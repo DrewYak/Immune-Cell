@@ -51,7 +51,7 @@ function PlayState:update(dt)
         gSounds['music']:stop()
         gSounds['victory']:play()
         self.paused = true
-        gStateMachine:change('game over')
+        gStateMachine:change('game over', {status = 'win'})
     end
 end
 

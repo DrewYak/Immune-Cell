@@ -4,10 +4,10 @@
 
 	A game in which the immune cell must eat viruses and bacteria.
 
-    Credit for graphics (amazing work!):
+    Credit for graphics:
     https://opengameart.org/users/buch
 
-    Credit for music (great loop):
+    Credit for music:
     http://freesound.org/people/joshuaempyre/sounds/251461/
     http://www.soundcloud.com/empyreanma
 ]]

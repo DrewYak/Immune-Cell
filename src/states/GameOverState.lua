@@ -2,8 +2,8 @@ GameOverState = Class{__includes = BaseState}
 
 local highlighted = 1
 
-function GameOverState:enter()
-	--self.score = params.score
+function GameOverState:enter(params)
+	self.status = params.status
 	--self.last_virus = params.last_virus
 end
 
@@ -28,8 +28,10 @@ end
 
 function GameOverState:render()
 	love.graphics.setFont(gFonts['large'])
-	love.graphics.printf('VICTORY!', 0, VIRTUAL_HEIGHT / 3, 
-		VIRTUAL_WIDTH, 'center')
+    if self.status == 'win' then
+	   love.graphics.printf('VICTORY!', 0, VIRTUAL_HEIGHT / 3, 
+    		VIRTUAL_WIDTH, 'center')
+    end
 
 	-- menu
     love.graphics.setFont(gFonts['medium'])
