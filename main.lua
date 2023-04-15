@@ -9,7 +9,6 @@
 
     Credit for music:
     https://freesound.org/people/joshuaempyre/sounds/251461/
-    https://freesound.org/people/Mrrobodevin/sounds/656087/
     https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
 ]]
 
@@ -40,7 +39,7 @@ function love.load()
     gTextures = {
     	['background'] = love.graphics.newImage('graphics/background.png'),
         ['viruses'] = love.graphics.newImage('graphics/viruses.png'),
-        ['cell'] = love.graphics.newImage('graphics/immune_cell.png')
+        ['cell'] = love.graphics.newImage('graphics/immune_cell3.png')
     }
 
     gFrames = {

@@ -1,13 +1,17 @@
 Cell = Class{}
 
 function Cell:init(isSelected, speedIncrease)
-    scale_cell = 128 / 952
+    --scale_cell = 128 / 952
+    scale_cell = 1
 
     -- self.width and self.height
     -- must be initialize
     -- before self.x and self.y
-    self.width = 1077 * scale_cell
-    self.height = 952 * scale_cell
+    --self.width = 1077 * scale_cell
+    --self.height = 952 * scale_cell
+    self.width = 145 * scale_cell
+    self.height = 128 * scale_cell
+
 
     self.x = VIRTUAL_WIDTH / 2 - self.width / 2
     self.y = VIRTUAL_HEIGHT / 2 - self.height / 2
