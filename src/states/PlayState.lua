@@ -39,18 +39,23 @@ function PlayState:update(dt)
                 break
             end
         end
-        
+
         if self.cell:collides(v) then 
             v:hit()
             table.remove(self.viruses, i)
             break
+        end
+
+        if v.x > WINDOW_WIDTH + 50 then
+            gSounds['music']:stop()
+            gSounds['lose']:play()
+            gStateMachine:change('game over', {status = 'lose'})
         end
     end
 
     if table.getn(self.viruses) == 0 then
         gSounds['music']:stop()
         gSounds['victory']:play()
-        self.paused = true
         gStateMachine:change('game over', {status = 'win'})
     end
 end

@@ -8,8 +8,9 @@
     https://opengameart.org/users/buch
 
     Credit for music:
-    http://freesound.org/people/joshuaempyre/sounds/251461/
-    http://www.soundcloud.com/empyreanma
+    https://freesound.org/people/joshuaempyre/sounds/251461/
+    https://freesound.org/people/Mrrobodevin/sounds/656087/
+    https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
 ]]
 
 require 'src/Dependencies'
@@ -61,6 +62,7 @@ function love.load()
         ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
         ['virus-hit'] = love.audio.newSource('sounds/virus-hit.wav', 'static'),
         ['victory'] = love.audio.newSource('sounds/victory2.mp3', 'static'),
+        ['lose'] = love.audio.newSource('sounds/lose.wav', 'static'),
 
         ['music'] = love.audio.newSource('sounds/music.wav', 'static')
     }

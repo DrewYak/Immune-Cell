@@ -29,8 +29,11 @@ end
 function GameOverState:render()
 	love.graphics.setFont(gFonts['large'])
     if self.status == 'win' then
-	   love.graphics.printf('VICTORY!', 0, VIRTUAL_HEIGHT / 3, 
+	   love.graphics.printf('YOU WIN!', 0, VIRTUAL_HEIGHT / 3, 
     		VIRTUAL_WIDTH, 'center')
+    elseif self.status == 'lose' then
+       love.graphics.printf('YOU LOSE!', 0, VIRTUAL_HEIGHT / 3, 
+            VIRTUAL_WIDTH, 'center')        
     end
 
 	-- menu
