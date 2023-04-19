@@ -5,7 +5,7 @@ function LevelMaker.createViruses(count)
 
     for i = 1, count do
         number = math.random(1, TOTAL_VIRUSES)
-        shiftLeft = i * 30
+        shiftLeft = i * math.random (30, 40)
 
         virus = Virus(number, shiftLeft)
         table.insert(viruses, virus)

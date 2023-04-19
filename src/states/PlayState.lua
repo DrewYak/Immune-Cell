@@ -1,7 +1,10 @@
 PlayState = Class{__includes = BaseState}
 
+local your_score = 0
+local helper_score = 0
+
 function PlayState:init()
-    self.cells = LevelMaker.createCells(3)
+    self.helper_cells = LevelMaker.createCells(COUNT_HELPER_CELLS)
     self.cell = LevelMaker.createCell(true, 1)
 
     gSounds['music']:play()
@@ -24,7 +27,7 @@ function PlayState:update(dt)
         return
     end
 
-    for i, c in pairs(self.cells) do
+    for i, c in pairs(self.helper_cells) do
         c:update(dt)
     end
 
@@ -32,10 +35,11 @@ function PlayState:update(dt)
 
     for i, v in pairs(self.viruses) do
         v:update(dt)
-        for j, c in pairs(self.cells) do
+        for j, c in pairs(self.helper_cells) do
             if c:collides(v) then
                 v:hit()
                 table.remove(self.viruses, i)
+                helper_score = helper_score + 1
                 break
             end
         end
@@ -43,6 +47,7 @@ function PlayState:update(dt)
         if self.cell:collides(v) then 
             v:hit()
             table.remove(self.viruses, i)
+            your_score = your_score + 1
             break
         end
 
@@ -65,11 +70,13 @@ function PlayState:render()
         v:render()
     end
 
-    for i, c in pairs(self.cells) do
+    for i, c in pairs(self.helper_cells) do
         c:render()
     end
 
     self.cell:render()
 
-    love.graphics.print('Virus count: ' .. tostring(table.getn(self.viruses)), 105, 5)
+    love.graphics.print('Wave 1: ' .. tostring(table.getn(self.viruses)), 105, 5)
+    love.graphics.print('Your score: ' .. tostring(your_score), 245, 5)
+    love.graphics.print('Helper score: ' .. tostring(helper_score), 425, 5)
 end

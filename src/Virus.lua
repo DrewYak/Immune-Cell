@@ -12,7 +12,7 @@ function Virus:init(number, shiftLeft)
 	self.r = math.random() * 2 * math.pi
 	self.direction = math.random(0, 1) * 2 - 1
 
-	self.dx = math.random(VIRUS_SPEED_X / 10, VIRUS_SPEED_X)
+	self.dx = math.random(VIRUS_SPEED_X / 2.5, VIRUS_SPEED_X)
 	self.dy = math.random(VIRUS_SPEED_Y / 10, VIRUS_SPEED_Y)
 	self.dr = VIRUS_ROT_SPEED
 
