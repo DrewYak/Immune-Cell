@@ -17,7 +17,7 @@ function GameOverState:update(dt)
         gSounds['confirm']:play()
         
         if highlighted == 1 then
-            gStateMachine:change('play')
+            gStateMachine:change('infinity play')
         end
     end
 

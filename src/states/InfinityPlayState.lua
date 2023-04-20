@@ -1,9 +1,9 @@
-PlayState = Class{__includes = BaseState}
+InfinityPlayState = Class{__includes = BaseState}
 
 local your_score = 0
 local helper_score = 0
 
-function PlayState:init()
+function InfinityPlayState:init()
     self.helper_cells = LevelMaker.createCells(COUNT_HELPER_CELLS)
     self.cell = LevelMaker.createCell(true, 1)
 
@@ -13,7 +13,7 @@ function PlayState:init()
     self.viruses = LevelMaker.createViruses(COUNT_VIRUSES)
 end
 
-function PlayState:update(dt)
+function InfinityPlayState:update(dt)
     if self.paused then
         if love.keyboard.wasPressed('space') then
             self.paused = false
@@ -65,7 +65,7 @@ function PlayState:update(dt)
     end
 end
 
-function PlayState:render()
+function InfinityPlayState:render()
     for i, v in pairs(self.viruses) do
         v:render()
     end

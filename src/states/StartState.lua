@@ -28,7 +28,7 @@ function StartState:update(dt)
         gSounds['confirm']:play()
         
         if highlighted == 1 then
-            gStateMachine:change('play')
+            gStateMachine:change('infinity play')
         end
     end
 
@@ -50,11 +50,11 @@ function StartState:render()
 
     if highlighted == 1 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> START <=", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf("=> PLAY INFINITY <=", 0, VIRTUAL_HEIGHT / 2 + 70,
             VIRTUAL_WIDTH, 'center')
     else
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf("START", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf("PLAY INFINITY", 0, VIRTUAL_HEIGHT / 2 + 70,
             VIRTUAL_WIDTH, 'center')
     end
 
