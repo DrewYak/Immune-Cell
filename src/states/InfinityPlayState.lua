@@ -2,15 +2,25 @@ InfinityPlayState = Class{__includes = BaseState}
 
 local your_score = 0
 local helper_score = 0
+local wave = 1
+local speed_coef = 1.0
+local virus_count = 5
+local time_start_wave = 0
 
 function InfinityPlayState:init()
-    self.helper_cells = LevelMaker.createCells(COUNT_HELPER_CELLS)
-    self.cell = LevelMaker.createCell(true, 1)
+    if self.helper_cells == nil then 
+        self.helper_cells = LevelMaker.createCells(COUNT_HELPER_CELLS)
+    end
+
+    if self.cell == nil then 
+        self.cell = LevelMaker.createCell(true, 1)
+    end
 
     gSounds['music']:play()
     gSounds['music']:setLooping(true)
 
-    self.viruses = LevelMaker.createViruses(COUNT_VIRUSES)
+    self.viruses = LevelMaker.createViruses(virus_count, speed_coef)
+    time_start_wave = love.timer.getTime()
 end
 
 function InfinityPlayState:update(dt)
@@ -59,9 +69,14 @@ function InfinityPlayState:update(dt)
     end
 
     if table.getn(self.viruses) == 0 then
-        gSounds['music']:stop()
-        gSounds['victory']:play()
-        gStateMachine:change('game over', {status = 'win'})
+        wave = wave + 1
+        speed_coef = speed_coef + 0.5
+        virus_count = virus_count + math.random(1, 3)
+
+        gSounds['short-victory']:play()
+
+        self.viruses = LevelMaker.createViruses(virus_count, speed_coef)
+        time_start_wave = love.timer.getTime()
     end
 end
 
@@ -76,7 +91,15 @@ function InfinityPlayState:render()
 
     self.cell:render()
 
-    love.graphics.print('Wave 1: ' .. tostring(table.getn(self.viruses)), 105, 5)
+    if love.timer.getTime() - time_start_wave < 2 then
+        love.graphics.setFont(gFonts['large'])
+        love.graphics.setColor(1/255, 102/255, 169/255, 1)
+        love.graphics.printf("WAVE " .. tostring(wave), 20, VIRTUAL_HEIGHT / 9, VIRTUAL_WIDTH, 'left')
+    end
+
+    love.graphics.setFont(gFonts['small'])
+    love.graphics.setColor(1, 1, 1, 1)        
+    love.graphics.print('Wave ' .. tostring(wave) .. ':' .. tostring(table.getn(self.viruses)), 105, 5)
     love.graphics.print('Your score: ' .. tostring(your_score), 245, 5)
     love.graphics.print('Helper score: ' .. tostring(helper_score), 425, 5)
 end

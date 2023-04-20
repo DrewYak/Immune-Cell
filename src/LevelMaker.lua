@@ -1,13 +1,13 @@
 LevelMaker = Class{}
 
-function LevelMaker.createViruses(count)
+function LevelMaker.createViruses(count, speed_coef)
     local viruses = {}
 
     for i = 1, count do
         number = math.random(1, TOTAL_VIRUSES)
         shiftLeft = i * math.random (30, 40)
 
-        virus = Virus(number, shiftLeft)
+        virus = Virus(number, shiftLeft, speed_coef)
         table.insert(viruses, virus)
     end
 

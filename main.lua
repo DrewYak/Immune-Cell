@@ -10,6 +10,7 @@
     Credit for music:
     https://freesound.org/people/joshuaempyre/sounds/251461/
     https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
+    https://freesound.org/people/shinephoenixstormcrow/sounds/337049/
 ]]
 
 require 'src/Dependencies'
@@ -60,8 +61,9 @@ function love.load()
         ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
         ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
         ['virus-hit'] = love.audio.newSource('sounds/virus-hit.wav', 'static'),
-        ['victory'] = love.audio.newSource('sounds/victory2.mp3', 'static'),
+        ['victory'] = love.audio.newSource('sounds/victory.mp3', 'static'),
         ['lose'] = love.audio.newSource('sounds/lose.wav', 'static'),
+        ['short-victory'] = love.audio.newSource('sounds/short-victory.mp3', 'static'),
 
         ['music'] = love.audio.newSource('sounds/music.wav', 'static')
     }

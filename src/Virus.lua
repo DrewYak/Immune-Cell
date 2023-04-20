@@ -1,6 +1,6 @@
 Virus = Class{}
 
-function Virus:init(number, shiftLeft)
+function Virus:init(number, shiftLeft, speed_coef)
 	-- actual quad's sizes!
 	-- initialize before self.x and self.y
 	self.width = 256
@@ -12,8 +12,8 @@ function Virus:init(number, shiftLeft)
 	self.r = math.random() * 2 * math.pi
 	self.direction = math.random(0, 1) * 2 - 1
 
-	self.dx = math.random(VIRUS_SPEED_X / 2.5, VIRUS_SPEED_X)
-	self.dy = math.random(VIRUS_SPEED_Y / 10, VIRUS_SPEED_Y)
+	self.dx = math.random(VIRUS_SPEED_X * speed_coef / 2.5, VIRUS_SPEED_X)
+	self.dy = math.random(VIRUS_SPEED_Y * speed_coef / 10, VIRUS_SPEED_Y)
 	self.dr = VIRUS_ROT_SPEED
 
 
