@@ -70,5 +70,17 @@ function Cell:collides(target)
 end
 
 function Cell:render()
-    love.graphics.draw(gTextures['cell'], self.x, self.y, 0, scale_cell, scale_cell)
+    if self.isSelected then
+        if self.x < VIRTUAL_WIDTH / 2 and self.y < VIRTUAL_HEIGHT / 2 then
+            love.graphics.draw(gTextures['cell_red'], self.x, self.y, 0, scale_cell, scale_cell)
+        elseif self.x < VIRTUAL_WIDTH / 2 and self.y >= VIRTUAL_HEIGHT / 2 then
+            love.graphics.draw(gTextures['cell_orange'], self.x, self.y, 0, scale_cell, scale_cell)
+        elseif self.x >= VIRTUAL_WIDTH / 2 and self.y < VIRTUAL_HEIGHT / 2 then
+            love.graphics.draw(gTextures['cell_green'], self.x, self.y, 0, scale_cell, scale_cell)
+        elseif self.x >= VIRTUAL_WIDTH / 2 and self.y >= VIRTUAL_HEIGHT / 2 then
+            love.graphics.draw(gTextures['cell_blue'], self.x, self.y, 0, scale_cell, scale_cell)    
+        end    
+    else
+        love.graphics.draw(gTextures['cell'], self.x, self.y, 0, scale_cell, scale_cell)
+    end
 end

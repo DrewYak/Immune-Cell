@@ -40,7 +40,11 @@ function love.load()
     gTextures = {
     	['background'] = love.graphics.newImage('graphics/background.png'),
         ['viruses'] = love.graphics.newImage('graphics/viruses.png'),
-        ['cell'] = love.graphics.newImage('graphics/immune_cell3.png')
+        ['cell'] = love.graphics.newImage('graphics/immune_cell.png'),
+        ['cell_red'] = love.graphics.newImage('graphics/immune_cell_red.png'),
+        ['cell_orange'] = love.graphics.newImage('graphics/immune_cell_orange.png'),
+        ['cell_green'] = love.graphics.newImage('graphics/immune_cell_green.png'),
+        ['cell_blue'] = love.graphics.newImage('graphics/immune_cell_blue.png'),
     }
 
     gFrames = {
