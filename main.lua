@@ -11,6 +11,11 @@
     https://freesound.org/people/joshuaempyre/sounds/251461/
     https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
     https://freesound.org/people/shinephoenixstormcrow/sounds/337049/
+    
+    level-up
+    https://freesound.org/people/qubodup/sounds/195486/
+    https://freesound.org/people/Fupicat/sounds/538149/
+    https://freesound.org/people/Phenala/sounds/478647/
 ]]
 
 require 'src/Dependencies'
@@ -41,7 +46,7 @@ function love.load()
     	['background'] = love.graphics.newImage('graphics/background.png'),
         ['viruses'] = love.graphics.newImage('graphics/viruses.png'),
         ['cells'] = love.graphics.newImage('graphics/cells.png'),
-        ['cell_bot'] = love.graphics.newImage('graphics/cell_bot.png')        
+        ['cell-bot'] = love.graphics.newImage('graphics/cell-bot.png')        
     }
 
     gFrames = {
@@ -66,6 +71,7 @@ function love.load()
         ['victory'] = love.audio.newSource('sounds/victory.mp3', 'static'),
         ['lose'] = love.audio.newSource('sounds/lose.wav', 'static'),
         ['short-victory'] = love.audio.newSource('sounds/short-victory.mp3', 'static'),
+        ['level-up'] = love.audio.newSource('sounds/level-up.mp3', 'static'),
 
         ['music'] = love.audio.newSource('sounds/music.wav', 'static')
     }

@@ -49,6 +49,7 @@ function InfinityPlayState:update(dt)
             if c:collides(v) then
                 v:hit()
                 table.remove(self.viruses, i)
+                c.score = c.score + 1
                 bot_score = bot_score + 1
                 break
             end
@@ -57,6 +58,10 @@ function InfinityPlayState:update(dt)
         if self.cell:collides(v) then 
             v:hit()
             table.remove(self.viruses, i)
+            self.cell.score = self.cell.score + 1
+            if self.cell.score == LEVEL_UP_1 or self.cell.score == LEVEL_UP_2 or self.cell.score == LEVEL_UP_3 then
+                gSounds['level-up']:play()   
+            end            
             your_score = your_score + 1
             break
         end

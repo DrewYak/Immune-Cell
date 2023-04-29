@@ -21,6 +21,7 @@ function Cell:init(isBot, speedIncrease)
 
     self.isBot = isBot
     self.speedIncrease = speedIncrease
+    self.score = 0
 end
 
 function Cell:update(dt)
@@ -65,14 +66,33 @@ function Cell:update(dt)
 end
 
 function Cell:collides(target)
-    return ((self.x + self.width / 2) - (target.x))^2 + 
-    ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE^2
+        if self.score < LEVEL_UP_1 then
+            return ((self.x + self.width / 2) - (target.x))^2 + 
+            ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE_0^2
+        elseif self.score < LEVEL_UP_2 then
+            return ((self.x + self.width / 2) - (target.x))^2 + 
+            ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE_1^2
+        elseif self.score < LEVEL_UP_3 then
+            return ((self.x + self.width / 2) - (target.x))^2 + 
+            ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE_2^2
+        else
+            return ((self.x + self.width / 2) - (target.x))^2 + 
+            ((self.y + self.height / 2) - (target.y))^2 <= COLLISION_DISTANCE_3^2
+        end            
 end
 
 function Cell:render()
     if self.isBot then
-        love.graphics.draw(gTextures['cell_bot'], self.x, self.y, 0, scale_cell, scale_cell)    
+        love.graphics.draw(gTextures['cell-bot'], self.x, self.y, 0, scale_cell, scale_cell)    
     else
-        love.graphics.draw(gTextures['cells'], gFrames['cells'][1], self.x, self.y, 0, scale_cell, scale_cell)    
+        if self.score < LEVEL_UP_1 then
+            love.graphics.draw(gTextures['cells'], gFrames['cells'][1], self.x, self.y, 0, scale_cell, scale_cell)    
+        elseif self.score < LEVEL_UP_2 then
+            love.graphics.draw(gTextures['cells'], gFrames['cells'][2], self.x, self.y, 0, scale_cell, scale_cell)    
+        elseif self.score < LEVEL_UP_3 then
+            love.graphics.draw(gTextures['cells'], gFrames['cells'][3], self.x, self.y, 0, scale_cell, scale_cell)    
+        else
+            love.graphics.draw(gTextures['cells'], gFrames['cells'][4], self.x, self.y, 0, scale_cell, scale_cell)    
+        end            
     end 
 end
