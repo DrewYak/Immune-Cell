@@ -1,19 +1,19 @@
 InfinityPlayState = Class{__includes = BaseState}
 
 local your_score = 0
-local helper_score = 0
+local bot_score = 0
 local wave = 1
 local speed_coef = 1.0
 local virus_count = 5
 local time_start_wave = 0
 
 function InfinityPlayState:init()
-    if self.helper_cells == nil then 
-        self.helper_cells = LevelMaker.createCells(COUNT_HELPER_CELLS)
+    if self.bot_cells == nil then 
+        self.bot_cells = LevelMaker.createBotCells(COUNT_BOT_CELLS)
     end
 
     if self.cell == nil then 
-        self.cell = LevelMaker.createCell(true, 1)
+        self.cell = LevelMaker.createCell(false, 1)
     end
 
     gSounds['music']:play()
@@ -37,7 +37,7 @@ function InfinityPlayState:update(dt)
         return
     end
 
-    for i, c in pairs(self.helper_cells) do
+    for i, c in pairs(self.bot_cells) do
         c:update(dt)
     end
 
@@ -45,11 +45,11 @@ function InfinityPlayState:update(dt)
 
     for i, v in pairs(self.viruses) do
         v:update(dt)
-        for j, c in pairs(self.helper_cells) do
+        for j, c in pairs(self.bot_cells) do
             if c:collides(v) then
                 v:hit()
                 table.remove(self.viruses, i)
-                helper_score = helper_score + 1
+                bot_score = bot_score + 1
                 break
             end
         end
@@ -85,7 +85,7 @@ function InfinityPlayState:render()
         v:render()
     end
 
-    for i, c in pairs(self.helper_cells) do
+    for i, c in pairs(self.bot_cells) do
         c:render()
     end
 
@@ -101,5 +101,5 @@ function InfinityPlayState:render()
     love.graphics.setColor(1, 1, 1, 1)        
     love.graphics.print('Wave ' .. tostring(wave) .. ':' .. tostring(table.getn(self.viruses)), 105, 5)
     love.graphics.print('Your score: ' .. tostring(your_score), 245, 5)
-    love.graphics.print('Helper score: ' .. tostring(helper_score), 425, 5)
+    love.graphics.print('Helper score: ' .. tostring(bot_score), 425, 5)
 end

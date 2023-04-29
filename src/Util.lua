@@ -45,3 +45,7 @@ end
 function GenerateQuadsViruses(atlas)
 	return table.slice(GenerateQuads(atlas, 256, 256), 1, 43)
 end
+
+function GenerateQuadsCells(atlas)
+	return table.slice(GenerateQuads(atlas, 150, 140), 1, 16)
+end

@@ -1,6 +1,6 @@
 Cell = Class{}
 
-function Cell:init(isSelected, speedIncrease)
+function Cell:init(isBot, speedIncrease)
     --scale_cell = 128 / 952
     scale_cell = 1
 
@@ -9,8 +9,8 @@ function Cell:init(isSelected, speedIncrease)
     -- before self.x and self.y
     --self.width = 1077 * scale_cell
     --self.height = 952 * scale_cell
-    self.width = 145 * scale_cell
-    self.height = 128 * scale_cell
+    self.width = 150 * scale_cell
+    self.height = 140 * scale_cell
 
 
     self.x = VIRTUAL_WIDTH / 2 - self.width / 2
@@ -19,12 +19,18 @@ function Cell:init(isSelected, speedIncrease)
     self.dx = 0
     self.dy = 0
 
-    self.isSelected = isSelected
+    self.isBot = isBot
     self.speedIncrease = speedIncrease
 end
 
 function Cell:update(dt)
-    if self.isSelected then
+    if self.isBot then
+        if lastTime == nil or os.time() - lastTime >= math.random(0, 40)  then
+            self.dx = CELL_SPEED * (math.random(0, 1) * 2 - 1)
+            self.dy = CELL_SPEED * (math.random(0, 1) * 2 - 1) 
+            lastTime = os.time()
+        end
+    else        
         if love.keyboard.isDown('left') then
             self.dx = -CELL_SPEED
         elseif love.keyboard.isDown('right') then
@@ -39,12 +45,6 @@ function Cell:update(dt)
             self.dy = CELL_SPEED
         else
             self.dy = 0
-        end
-    else
-        if lastTime == nil or os.time() - lastTime >= math.random(0, 40)  then
-            self.dx = CELL_SPEED * (math.random(0, 1) * 2 - 1)
-            self.dy = CELL_SPEED * (math.random(0, 1) * 2 - 1) 
-            lastTime = os.time()
         end
     end
 
@@ -70,17 +70,9 @@ function Cell:collides(target)
 end
 
 function Cell:render()
-    if self.isSelected then
-        if self.x < VIRTUAL_WIDTH / 2 and self.y < VIRTUAL_HEIGHT / 2 then
-            love.graphics.draw(gTextures['cell_red'], self.x, self.y, 0, scale_cell, scale_cell)
-        elseif self.x < VIRTUAL_WIDTH / 2 and self.y >= VIRTUAL_HEIGHT / 2 then
-            love.graphics.draw(gTextures['cell_orange'], self.x, self.y, 0, scale_cell, scale_cell)
-        elseif self.x >= VIRTUAL_WIDTH / 2 and self.y < VIRTUAL_HEIGHT / 2 then
-            love.graphics.draw(gTextures['cell_green'], self.x, self.y, 0, scale_cell, scale_cell)
-        elseif self.x >= VIRTUAL_WIDTH / 2 and self.y >= VIRTUAL_HEIGHT / 2 then
-            love.graphics.draw(gTextures['cell_blue'], self.x, self.y, 0, scale_cell, scale_cell)    
-        end    
+    if self.isBot then
+        love.graphics.draw(gTextures['cell_bot'], self.x, self.y, 0, scale_cell, scale_cell)    
     else
-        love.graphics.draw(gTextures['cell'], self.x, self.y, 0, scale_cell, scale_cell)
-    end
+        love.graphics.draw(gTextures['cells'], gFrames['cells'][1], self.x, self.y, 0, scale_cell, scale_cell)    
+    end 
 end

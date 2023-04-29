@@ -14,18 +14,18 @@ function LevelMaker.createViruses(count, speed_coef)
     return viruses
 end
 
-function LevelMaker.createCell(isSelected, speedIncrease)
-    cell = Cell(isSelected, speedIncrease)
+function LevelMaker.createCell(isBot, speedIncrease)
+    cell = Cell(isBot, speedIncrease)
     return cell
 end
 
-function LevelMaker.createCells(count)
-    local cells = {}
+function LevelMaker.createBotCells(count)
+    local bot_cells = {}
 
     for i = 1, count do
-        cell = LevelMaker.createCell(False, 1)
-        table.insert(cells, cell)
+        cell = LevelMaker.createCell(true, 1)
+        table.insert(bot_cells, cell)
     end
 
-    return cells
+    return bot_cells
 end
