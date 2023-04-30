@@ -16,11 +16,21 @@ StartState = Class{__includes = BaseState}
 
 -- whether we're highlighting "Start" or "High Scores"
 local highlighted = 1
+local lang = "en"
 
 function StartState:update(dt)
     -- toggle highlighted option if we press an arrow key up or down
-    if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then
-        highlighted = 1 + highlighted % 2
+    if love.keyboard.wasPressed('down') then
+        highlighted = highlighted % 4 + 1
+        gSounds['hit']:play()
+    end
+
+    if love.keyboard.wasPressed('up') then
+        if highlighted == 1 then
+            highlighted = 4
+        else
+            highlighted = highlighted - 1
+        end
         gSounds['hit']:play()
     end
 
@@ -28,7 +38,19 @@ function StartState:update(dt)
         gSounds['confirm']:play()
         
         if highlighted == 1 then
-            gStateMachine:change('infinity play')
+            gStateMachine:change('infinity play', {lang = lang})
+        end
+
+        if highlighted == 3 then
+            if lang == "en" then
+                lang = "ru"
+            else
+                lang = "en"
+            end
+        end
+
+        if highlighted == 4 then
+            love.event.quit()
         end
     end
 
@@ -42,7 +64,7 @@ function StartState:render()
     -- title
     love.graphics.setFont(gFonts['large'])
     love.graphics.setColor(1/255, 102/255, 169/255, 1)
-    love.graphics.printf("IMMUNE CELL", 0, VIRTUAL_HEIGHT / 3,
+    love.graphics.printf(loc[lang]["immune-cell"], 0, VIRTUAL_HEIGHT / 4,
         VIRTUAL_WIDTH, 'center')
     
     -- menu
@@ -50,21 +72,41 @@ function StartState:render()
 
     if highlighted == 1 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> PLAY INFINITY <=", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf("=> ".. loc[lang]["infinity-game"] .. " <=", 0, VIRTUAL_HEIGHT / 3 + 70,
             VIRTUAL_WIDTH, 'center')
     else
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf("PLAY INFINITY", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf(loc[lang]["infinity-game"], 0, VIRTUAL_HEIGHT / 3 + 70,
             VIRTUAL_WIDTH, 'center')
     end
 
     if highlighted == 2 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> HIGH SCORES <=", 0, VIRTUAL_HEIGHT / 2 + 140,
+        love.graphics.printf("=> ".. loc[lang]["high-scores"] .. " <=", 0, VIRTUAL_HEIGHT / 3 + 140,
             VIRTUAL_WIDTH, 'center')
     else
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 140,
+        love.graphics.printf(loc[lang]["high-scores"], 0, VIRTUAL_HEIGHT / 3 + 140,
+            VIRTUAL_WIDTH, 'center')
+    end
+
+    if highlighted == 3 then
+        love.graphics.setColor(178/255, 42/255, 28/255, 1)
+        love.graphics.printf("=> ".. loc[lang]["language"] .. " <=", 0, VIRTUAL_HEIGHT / 3 + 210,
+            VIRTUAL_WIDTH, 'center')
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.printf(loc[lang]["language"], 0, VIRTUAL_HEIGHT / 3 + 210,
+            VIRTUAL_WIDTH, 'center')
+    end
+
+    if highlighted == 4 then
+        love.graphics.setColor(178/255, 42/255, 28/255, 1)
+        love.graphics.printf("=> ".. loc[lang]["exit"] .. " <=", 0, VIRTUAL_HEIGHT / 3 + 280,
+            VIRTUAL_WIDTH, 'center')
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.printf(loc[lang]["exit"], 0, VIRTUAL_HEIGHT / 3 + 280,
             VIRTUAL_WIDTH, 'center')
     end
 

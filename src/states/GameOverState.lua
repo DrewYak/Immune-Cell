@@ -1,10 +1,16 @@
 GameOverState = Class{__includes = BaseState}
 
 local highlighted = 1
+local status = "win"
+local lang = "en"
+local player_score = 0
+local bot_score = 0
 
 function GameOverState:enter(params)
-	self.status = params.status
-	--self.last_virus = params.last_virus
+	status = params["status"]
+    lang = params["lang"]
+    player_score = params["player-score"]
+    bot_score = params["bot-score"]
 end
 
 function GameOverState:update(dt)
@@ -28,11 +34,11 @@ end
 
 function GameOverState:render()
 	love.graphics.setFont(gFonts['large'])
-    if self.status == 'win' then
-	   love.graphics.printf('YOU WIN!', 0, VIRTUAL_HEIGHT / 3, 
+    if status == "win" then
+	   love.graphics.printf(loc[lang]["you-win"], 0, VIRTUAL_HEIGHT / 3, 
     		VIRTUAL_WIDTH, 'center')
-    elseif self.status == 'lose' then
-       love.graphics.printf('YOU LOSE!', 0, VIRTUAL_HEIGHT / 3, 
+    elseif status == "lose" then
+       love.graphics.printf(loc[lang]["you-lose"], 0, VIRTUAL_HEIGHT / 3, 
             VIRTUAL_WIDTH, 'center')        
     end
 
@@ -41,21 +47,21 @@ function GameOverState:render()
 
     if highlighted == 1 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> TRY AGAIN <=", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", 0, VIRTUAL_HEIGHT / 2 + 70,
             VIRTUAL_WIDTH, 'center')
     else
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf("TRY AGAIN", 0, VIRTUAL_HEIGHT / 2 + 70,
+        love.graphics.printf(loc[lang]["continue"], 0, VIRTUAL_HEIGHT / 2 + 70,
             VIRTUAL_WIDTH, 'center')
     end
 
     if highlighted == 2 then
         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> HIGH SCORES <=", 0, VIRTUAL_HEIGHT / 2 + 140,
+        love.graphics.printf("=> " .. loc[lang]["high-scores"] .. " <=", 0, VIRTUAL_HEIGHT / 2 + 140,
             VIRTUAL_WIDTH, 'center')
     else
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 140,
+        love.graphics.printf(loc[lang]["high-scores"], 0, VIRTUAL_HEIGHT / 2 + 140,
             VIRTUAL_WIDTH, 'center')
     end
 

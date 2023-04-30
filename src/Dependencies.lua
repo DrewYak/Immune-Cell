@@ -15,6 +15,8 @@ Class = require 'lib/class'
 -- a few global constants, centralized
 require 'src/constants'
 
+require 'src/Localization'
+
 require 'src/Virus'
 require 'src/LevelMaker'
 require 'src/Cell'
@@ -24,7 +26,6 @@ require 'src/Cell'
 require 'src/StateMachine'
 
 require 'src/Util'
-
 
 -- each of the individual states our game can be in at once; each state has
 -- its own update and render methods that can be called by our state machine

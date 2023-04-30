@@ -11,11 +11,8 @@
     https://freesound.org/people/joshuaempyre/sounds/251461/
     https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
     https://freesound.org/people/shinephoenixstormcrow/sounds/337049/
-    
-    level-up
     https://freesound.org/people/qubodup/sounds/195486/
-    https://freesound.org/people/Fupicat/sounds/538149/
-    https://freesound.org/people/Phenala/sounds/478647/
+
 ]]
 
 require 'src/Dependencies'
@@ -36,9 +33,9 @@ function love.load()
     love.window.setTitle('Immune Cell')
 
     gFonts = {
-        ['small'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 24),
-        ['medium'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 48),
-        ['large'] = love.graphics.newFont('fonts/SunnyspellsRegular-MV9ze.otf', 96)
+        ['small'] = love.graphics.newFont('fonts/ShantellSans-MediumItalic.ttf', 20),
+        ['medium'] = love.graphics.newFont('fonts/ShantellSans-MediumItalic.ttf', 40),
+        ['large'] = love.graphics.newFont('fonts/ShantellSans-MediumItalic.ttf', 80)
     }
     love.graphics.setFont(gFonts['small'])
 
