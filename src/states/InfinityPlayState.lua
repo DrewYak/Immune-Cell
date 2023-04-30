@@ -78,7 +78,8 @@ function InfinityPlayState:update(dt)
                 ["status"] = 'lose',
                 ["lang"] = lang,
                 ["player-score"] = player_score,
-                ["bot-score"] = bot_score
+                ["bot-score"] = bot_score,
+                ["final-wave"] = wave
              })
         end
     end

@@ -5,12 +5,14 @@ local status = "win"
 local lang = "en"
 local player_score = 0
 local bot_score = 0
+local final_wave = 0
 
 function GameOverState:enter(params)
 	status = params["status"]
     lang = params["lang"]
     player_score = params["player-score"]
     bot_score = params["bot-score"]
+    final_wave = params["final-wave"]
 end
 
 function GameOverState:update(dt)
@@ -61,11 +63,13 @@ function GameOverState:render()
 
     -- info
     love.graphics.setFont(gFonts["medium"])
-    love.graphics.printf(loc[lang]["your-score"] .. tostring(player_score), 0, VIRTUAL_HEIGHT / 3 + 70,
+    love.graphics.printf(loc[lang]["final-wave"] .. tostring(final_wave), 0, VIRTUAL_HEIGHT / 3 + 70,
         VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["bot-score"] .. tostring(bot_score), 0, VIRTUAL_HEIGHT / 3 + 140,
+    love.graphics.printf(loc[lang]["your-score"] .. tostring(player_score), 0, VIRTUAL_HEIGHT / 3 + 140,
         VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["total-score"] .. tostring(player_score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 210,
+    love.graphics.printf(loc[lang]["bot-score"] .. tostring(bot_score), 0, VIRTUAL_HEIGHT / 3 + 210,
+        VIRTUAL_WIDTH / 2, 'center')
+    love.graphics.printf(loc[lang]["total-score"] .. tostring(player_score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280,
         VIRTUAL_WIDTH / 2, 'center')
 
 
