@@ -75,10 +75,10 @@ function InfinityPlayState:update(dt)
             gSounds['music']:stop()
             gSounds['lose']:play()
             gStateMachine:change('game over', {
-                status = 'lose',
-                lang = lang,
-                player_score = player_score,
-                bot_score = bot_score
+                ["status"] = 'lose',
+                ["lang"] = lang,
+                ["player-score"] = player_score,
+                ["bot-score"] = bot_score
              })
         end
     end
