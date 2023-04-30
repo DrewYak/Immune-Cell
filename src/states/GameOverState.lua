@@ -6,13 +6,15 @@ local lang = "en"
 local player_score = 0
 local bot_score = 0
 local final_wave = 0
+local lifes = 0
 
 function GameOverState:enter(params)
 	status = params["status"]
     lang = params["lang"]
     player_score = params["player-score"]
     bot_score = params["bot-score"]
-    final_wave = params["final-wave"]
+    final_wave = params["wave"]
+    lifes = params["lifes"]
 end
 
 function GameOverState:update(dt)
@@ -34,11 +36,25 @@ function GameOverState:update(dt)
         gSounds['confirm']:play()
         
         if highlighted == 1 then
-            gStateMachine:change('infinity play')
+            if lifes > 0 then                
+                gStateMachine:change('infinity play', {
+                    ["lang"] = lang,
+                    ["player-score"] = player_score,
+                    ["bot-score"] = bot_score,
+                    ["wave"] = final_wave,
+                    ["lifes"] = lifes
+                })
+            end
         end
 
         if highlighted == 3 then
-            gStateMachine:change('start')
+            gStateMachine:change('start', {
+                ["lang"] = lang,
+                ["player-score"] = 0,
+                ["bot-score"] = 0,
+                ["wave"] = 1,
+                ["lifes"] = DEFAULT_LIFES
+            })
         end
 
         if highlighted == 4 then
@@ -78,13 +94,25 @@ function GameOverState:render()
     love.graphics.setFont(gFonts['medium'])
 
     if highlighted == 1 then
-        love.graphics.setColor(178/255, 42/255, 28/255, 1)
-        love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-            VIRTUAL_WIDTH / 2, 'center')
+        if lifes > 0 then
+            love.graphics.setColor(178/255, 42/255, 28/255, 1)
+            love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
+                VIRTUAL_WIDTH / 2, 'center')
+        else
+            love.graphics.setColor(128/255, 128/255, 128/255, 1)
+            love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
+                VIRTUAL_WIDTH / 2, 'center')
+        end            
     else
-        love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-            VIRTUAL_WIDTH / 2, 'center')
+        if lifes > 0 then
+            love.graphics.setColor(1, 1, 1, 1)
+            love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
+                VIRTUAL_WIDTH / 2, 'center')
+        else
+            love.graphics.setColor(128/255, 128/255, 128/255, 1)
+            love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
+                VIRTUAL_WIDTH / 2, 'center')
+        end            
     end
 
     if highlighted == 2 then
@@ -117,6 +145,8 @@ function GameOverState:render()
             VIRTUAL_WIDTH / 2, 'center')
     end
 
-    -- reset the color
-    love.graphics.setColor(1, 1, 1, 1)
+
+    love.graphics.setFont(gFonts['small'])
+    love.graphics.setColor(1, 1, 1, 1)        
+    love.graphics.print(tostring(lifes), VIRTUAL_WIDTH - 30, 5)
 end

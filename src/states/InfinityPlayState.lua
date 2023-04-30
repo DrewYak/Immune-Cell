@@ -1,12 +1,12 @@
 InfinityPlayState = Class{__includes = BaseState}
 
-local player_score = 0
 local bot_score = 0
 local wave = 1
 local speed_coef = 1.0
 local virus_count = 5
 local time_start_wave = 0
 local lang = "en"
+local lifes = 0
 
 function InfinityPlayState:init()
     if self.bot_cells == nil then 
@@ -24,8 +24,17 @@ function InfinityPlayState:init()
     time_start_wave = love.timer.getTime()
 end
 
-function InfinityPlayState:enter(enterParams)
-    lang = enterParams["lang"]
+function InfinityPlayState:enter(params)
+    lang = params["lang"]
+    self.cell.score = params["player-score"]
+    bot_score = params["bot-score"]
+    wave = params["wave"]
+    lifes = params["lifes"]
+
+    speed_coef = 0.5 * (wave - 1)
+    if wave == 1 then
+        virus_count = INITIAL_VIRUS_COUNT
+    end
 end
 
 function InfinityPlayState:update(dt)
@@ -67,20 +76,21 @@ function InfinityPlayState:update(dt)
             if self.cell.score == LEVEL_UP_1 or self.cell.score == LEVEL_UP_2 or self.cell.score == LEVEL_UP_3 then
                 gSounds['level-up']:play()   
             end            
-            player_score = player_score + 1
             break
         end
 
         if v.x > WINDOW_WIDTH + 50 then
+            lifes = lifes - 1
             gSounds['music']:stop()
             gSounds['lose']:play()
             gStateMachine:change('game over', {
                 ["status"] = 'lose',
                 ["lang"] = lang,
-                ["player-score"] = player_score,
+                ["player-score"] = self.cell.score,
                 ["bot-score"] = bot_score,
-                ["final-wave"] = wave
-             })
+                ["wave"] = wave,
+                ["lifes"] = lifes
+            })
         end
     end
 
@@ -116,6 +126,7 @@ function InfinityPlayState:render()
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(1, 1, 1, 1)        
     love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(self.viruses)), 105, 5)
-    love.graphics.print(loc[lang]["your-score"] .. tostring(player_score), 245, 5)
+    love.graphics.print(loc[lang]["your-score"] .. tostring(self.cell.score), 245, 5)
     love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 425, 5)
+    love.graphics.print(tostring(lifes), VIRTUAL_WIDTH - 30, 5)
 end

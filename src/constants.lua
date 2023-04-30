@@ -16,8 +16,8 @@ VIRUS_SCALE = 0.5
 --the number of viruses on the sprite
 TOTAL_VIRUSES = 42
 
---number of viruses to generate
-COUNT_VIRUSES = 50
+--number of viruses to generate on wave 1
+INITIAL_VIRUS_COUNT = 5
 
 CELL_SPEED = 300
 COUNT_BOT_CELLS = 0
@@ -30,3 +30,6 @@ COLLISION_DISTANCE_3 = 80
 LEVEL_UP_1 = 10
 LEVEL_UP_2 = 15
 LEVEL_UP_3 = 25
+
+
+DEFAULT_LIFES = 3

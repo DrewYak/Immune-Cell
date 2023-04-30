@@ -38,7 +38,13 @@ function StartState:update(dt)
         gSounds['confirm']:play()
         
         if highlighted == 1 then
-            gStateMachine:change('infinity play', {lang = lang})
+            gStateMachine:change('infinity play', {
+                ["lang"] = lang,
+                ["player-score"] = 0,
+                ["bot-score"] = 0,
+                ["wave"] = 1,
+                ["lifes"] = DEFAULT_LIFES
+            })
         end
 
         if highlighted == 3 then
