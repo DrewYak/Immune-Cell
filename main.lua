@@ -30,7 +30,7 @@ function love.load()
     -- seed the RNG so that calls to random are always random
     math.randomseed(os.time())
 
-    love.window.setTitle('Immune Cell')
+    love.window.setTitle('Virus Catcher')
 
     gFonts = {
         ['small'] = love.graphics.newFont('fonts/ShantellSans-MediumItalic.ttf', 20),

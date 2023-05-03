@@ -36,7 +36,7 @@ function StartState:update(dt)
         
         if highlighted == 1 then
             gStateMachine:change('infinity play', {
-                ["wave"] = 1,
+                ["wave"] = -1,
             })
         end
 

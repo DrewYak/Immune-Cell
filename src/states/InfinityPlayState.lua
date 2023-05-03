@@ -15,7 +15,10 @@ local time_start_wave
 function InfinityPlayState:enter(params)
     wave = params["wave"]
 
-    if wave == 1 then
+    -- The value of the wave -1 means that 
+    -- the infinite game has started and is not continuing.
+    if wave == -1 then
+        wave = 1
         lifes = INITIAL_LIFES
         cell = LevelMaker.createCell(false, 1)
         bot_cells = LevelMaker.createBotCells(INITIAL_COUNT_BOT_CELLS)

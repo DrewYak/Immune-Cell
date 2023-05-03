@@ -59,28 +59,20 @@ function GameOverState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         gSounds['confirm']:play()
         
-        if highlighted == 1 then
-            if lifes > 0 then                
-                gStateMachine:change('infinity play', {
-                    ["wave"] = wave,
-                    ["lifes"] = lifes,
-                    ["cell"] = cell,
-                    ["bot-cells"] = bot_cells,
-                    ["bot-score"] = bot_score,
+        if highlighted == 1 then             
+            gStateMachine:change('infinity play', {
+                ["wave"] = wave,
+                ["lifes"] = lifes,
+                ["cell"] = cell,
+                ["bot-cells"] = bot_cells,
+                ["bot-score"] = bot_score,
 
-                    ["virus-count"] = virus_count
-                })
-            end
+                ["virus-count"] = virus_count
+            })
         end
 
         if highlighted == 3 then
-            gStateMachine:change('start', {
-                ["lang"] = lang,
-                ["player-score"] = 0,
-                ["bot-score"] = 0,
-                ["wave"] = 1,
-                ["lifes"] = DEFAULT_LIFES
-            })
+            gStateMachine:change('start')
         end
 
         if highlighted == 4 then
