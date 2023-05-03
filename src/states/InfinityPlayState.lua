@@ -72,6 +72,9 @@ function InfinityPlayState:update(dt)
                 table.remove(viruses, i)
                 c.score = c.score + 1
                 bot_score = bot_score + 1
+                if c.score == LEVEL_UP_1 or c.score == LEVEL_UP_2 or c.score == LEVEL_UP_3 then
+                    gSounds['level-up']:play()  
+                end
                 break
             end
         end
@@ -112,6 +115,10 @@ function InfinityPlayState:update(dt)
         gSounds['short-victory']:play()
 
         viruses = LevelMaker.createViruses(virus_count, virus_speed_coef)
+
+        if wave % 3 == 0 then
+            LevelMaker.addBotCell(bot_cells)
+        end
         time_start_wave = love.timer.getTime()
     end
 end
@@ -136,7 +143,7 @@ function InfinityPlayState:render()
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(1, 1, 1, 1)        
     love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(viruses)), 105, 5)
-    love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 245, 5)
-    love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 425, 5)
-    love.graphics.print(tostring(lifes), VIRTUAL_WIDTH - 30, 5)
+    love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 235, 5)
+    love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 415, 5)
+    love.graphics.printf(loc[lang]["lifes"] .. tostring(lifes), VIRTUAL_WIDTH - 125, 5, 115, "right")
 end

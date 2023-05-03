@@ -13,14 +13,14 @@ VIRUS_SPEED_Y = 200
 VIRUS_ROT_SPEED = 2
 VIRUS_SCALE = 0.5
 
---the number of viruses on the sprite
+--the number of viruses on the atlas
 TOTAL_VIRUSES = 42
 
 --initial characteristics on the wave 1
 INITIAL_LIFES = 3
 INITIAL_VIRUS_COUNT = 5
-INITIAL_VIRUS_SPEED_COEF = 10.0
-INITIAL_COUNT_BOT_CELLS = 4
+INITIAL_VIRUS_SPEED_COEF = 1.0
+INITIAL_COUNT_BOT_CELLS = 0
 
 CELL_SPEED = 300
 

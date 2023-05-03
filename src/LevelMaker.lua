@@ -29,3 +29,8 @@ function LevelMaker.createBotCells(count)
 
     return bot_cells
 end
+
+function LevelMaker.addBotCell(old_bot_cells)
+    cell = Cell(true, 1)
+    table.insert(old_bot_cells, cell)
+end
