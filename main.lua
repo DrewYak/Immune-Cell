@@ -66,11 +66,11 @@ function love.load()
         ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
         ['virus-hit'] = love.audio.newSource('sounds/virus-hit.wav', 'static'),
         ['victory'] = love.audio.newSource('sounds/victory.mp3', 'static'),
-        ['lose'] = love.audio.newSource('sounds/lose.wav', 'static'),
+        ['lose'] = love.audio.newSource('sounds/lose.mp3', 'static'),
         ['short-victory'] = love.audio.newSource('sounds/short-victory.mp3', 'static'),
         ['level-up'] = love.audio.newSource('sounds/level-up.mp3', 'static'),
 
-        ['music'] = love.audio.newSource('sounds/music.wav', 'static')
+        ['music'] = love.audio.newSource('sounds/music.mp3', 'stream')
     }
 
     -- the state machine we'll be using to transition between various states
