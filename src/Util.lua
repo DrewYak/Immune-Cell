@@ -49,3 +49,7 @@ end
 function GenerateQuadsCells(atlas)
 	return table.slice(GenerateQuads(atlas, 150, 140), 1, 16)
 end
+
+function GenerateQuadsBotCells(atlas)
+	return table.slice(GenerateQuads(atlas, 150, 140), 1, 4)
+end

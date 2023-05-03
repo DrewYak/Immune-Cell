@@ -78,13 +78,13 @@ end
 function Cell:render()
     if self.isBot then
         if self.score < LEVEL_UP_1 then
-            love.graphics.draw(gTextures['cells'], gFrames['cells'][9], self.x, self.y)    
+            love.graphics.draw(gTextures['bot-cells'], gFrames['bot-cells'][1], self.x, self.y)    
         elseif self.score < LEVEL_UP_2 then
-            love.graphics.draw(gTextures['cells'], gFrames['cells'][10], self.x, self.y)    
+            love.graphics.draw(gTextures['bot-cells'], gFrames['bot-cells'][2], self.x, self.y)    
         elseif self.score < LEVEL_UP_3 then
-            love.graphics.draw(gTextures['cells'], gFrames['cells'][11], self.x, self.y)    
+            love.graphics.draw(gTextures['bot-cells'], gFrames['bot-cells'][3], self.x, self.y)    
         else
-            love.graphics.draw(gTextures['cells'], gFrames['cells'][12], self.x, self.y)    
+            love.graphics.draw(gTextures['bot-cells'], gFrames['bot-cells'][4], self.x, self.y)    
         end            
     else
         if self.score < LEVEL_UP_1 then

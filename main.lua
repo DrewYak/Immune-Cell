@@ -43,12 +43,13 @@ function love.load()
     	['background'] = love.graphics.newImage('graphics/background.png'),
         ['viruses'] = love.graphics.newImage('graphics/viruses.png'),
         ['cells'] = love.graphics.newImage('graphics/cells.png'),
-        ['cell-bot'] = love.graphics.newImage('graphics/cell-bot.png')        
+        ['bot-cells'] = love.graphics.newImage('graphics/bot_cells.png')        
     }
 
     gFrames = {
         ['viruses'] = GenerateQuadsViruses(gTextures['viruses']),
-        ['cells'] = GenerateQuadsCells(gTextures['cells'])
+        ['cells'] = GenerateQuadsCells(gTextures['cells']),
+        ['bot-cells'] = GenerateQuadsBotCells(gTextures['bot-cells'])
     } 
 
     
