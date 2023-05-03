@@ -14,12 +14,9 @@
 -- even if we don't override them ourselves; handy to avoid superfluous code!
 StartState = Class{__includes = BaseState}
 
--- whether we're highlighting "Start" or "High Scores"
 local highlighted = 1
-local lang = "en"
 
 function StartState:update(dt)
-    -- toggle highlighted option if we press an arrow key up or down
     if love.keyboard.wasPressed('down') then
         highlighted = highlighted % 4 + 1
         gSounds['hit']:play()
@@ -39,11 +36,10 @@ function StartState:update(dt)
         
         if highlighted == 1 then
             gStateMachine:change('infinity play', {
-                ["lang"] = lang,
                 ["player-score"] = 0,
                 ["bot-score"] = 0,
                 ["wave"] = 1,
-                ["lifes"] = DEFAULT_LIFES
+                ["lifes"] = INITIAL_LIFES
             })
         end
 

@@ -2,7 +2,6 @@ GameOverState = Class{__includes = BaseState}
 
 local highlighted = 1
 local status = "win"
-local lang = "en"
 local player_score = 0
 local bot_score = 0
 local final_wave = 0
@@ -10,7 +9,6 @@ local lifes = 0
 
 function GameOverState:enter(params)
 	status = params["status"]
-    lang = params["lang"]
     player_score = params["player-score"]
     bot_score = params["bot-score"]
     final_wave = params["wave"]
@@ -38,7 +36,6 @@ function GameOverState:update(dt)
         if highlighted == 1 then
             if lifes > 0 then                
                 gStateMachine:change('infinity play', {
-                    ["lang"] = lang,
                     ["player-score"] = player_score,
                     ["bot-score"] = bot_score,
                     ["wave"] = final_wave,

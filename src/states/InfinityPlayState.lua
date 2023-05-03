@@ -1,11 +1,10 @@
 InfinityPlayState = Class{__includes = BaseState}
 
-local bot_score = 0
 local wave = 1
-local speed_coef = 1.0
-local virus_count = 5
+local virus_count = INITIAL_VIRUS_COUNT
+local speed_coef = INITIAL_SPEED_COEF
 local time_start_wave = 0
-local lang = "en"
+local bot_score = 0
 local lifes = 0
 
 function InfinityPlayState:init()
@@ -25,7 +24,6 @@ function InfinityPlayState:init()
 end
 
 function InfinityPlayState:enter(params)
-    lang = params["lang"]
     self.cell.score = params["player-score"]
     bot_score = params["bot-score"]
     wave = params["wave"]
@@ -34,6 +32,7 @@ function InfinityPlayState:enter(params)
     speed_coef = 0.5 * (wave - 1)
     if wave == 1 then
         virus_count = INITIAL_VIRUS_COUNT
+        speed_coef = INITIAL_SPEED_COEF
     end
 end
 
@@ -85,7 +84,6 @@ function InfinityPlayState:update(dt)
             gSounds['lose']:play()
             gStateMachine:change('game over', {
                 ["status"] = 'lose',
-                ["lang"] = lang,
                 ["player-score"] = self.cell.score,
                 ["bot-score"] = bot_score,
                 ["wave"] = wave,

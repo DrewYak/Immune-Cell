@@ -1,6 +1,8 @@
+lang = "en"
+
 loc = {
 	en = {
-		["immune-cell"] = "IMMUNE CELL",
+		["immune-cell"] = "VIRUS CATCHER",
 		["infinity-game"] = "INFINITY GAME",
 		["high-scores"] = "HIGH SCORES",
 		["language"] = "LANGUAGE: EN",
@@ -11,8 +13,8 @@ loc = {
 		["total-score"] = "Total score: ",
 		["wave-info"] = "Wave ",
 		["final-wave"] = "Final wave: ",
-		["wave"] = "WAVE ",
 		["you-lose"] = "YOU LOSE!",
+		["wave"] = "WAVE ",
 		["you-win"] = "YOU WIN!",
 		["continue"] = "CONTINUE",
 		["main-menu"] = "MAIN MENU"
@@ -20,7 +22,7 @@ loc = {
 
 
 	ru = {
-		["immune-cell"] = "ИММУННАЯ КЛЕТКА",
+		["immune-cell"] = "VIRUS CATCHER",
 		["infinity-game"] = "БЕСКОНЕЧНАЯ ИГРА",
 		["high-scores"] = "РЕКОРДЫ",
 		["language"] = "ЯЗЫК: РУ",

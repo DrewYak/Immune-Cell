@@ -16,7 +16,6 @@ function Virus:init(number, shiftLeft, speed_coef)
 	self.dy = math.random(VIRUS_SPEED_Y * speed_coef / 10, VIRUS_SPEED_Y)
 	self.dr = VIRUS_ROT_SPEED
 
-
 	self.number = number
 
 	self.inPlay = true
