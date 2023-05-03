@@ -1,18 +1,26 @@
 GameOverState = Class{__includes = BaseState}
 
 local highlighted = 1
-local status = "win"
-local player_score = 0
-local bot_score = 0
-local final_wave = 0
-local lifes = 0
+local status
+
+local lifes
+local wave
+local cell
+local bot_cells
+local bot_score
+
+local virus_count
 
 function GameOverState:enter(params)
 	status = params["status"]
-    player_score = params["player-score"]
-    bot_score = params["bot-score"]
-    final_wave = params["wave"]
     lifes = params["lifes"]
+    wave = params["wave"]
+    cell = params["cell"]
+    bot_cells = params["bot-cells"]
+
+    bot_score = params["bot-score"]
+
+    virus_count = params["virus-count"]
 end
 
 function GameOverState:update(dt)
@@ -36,10 +44,13 @@ function GameOverState:update(dt)
         if highlighted == 1 then
             if lifes > 0 then                
                 gStateMachine:change('infinity play', {
-                    ["player-score"] = player_score,
+                    ["wave"] = wave,
+                    ["lifes"] = lifes,
+                    ["cell"] = cell,
+                    ["bot-cells"] = bot_cells,
                     ["bot-score"] = bot_score,
-                    ["wave"] = final_wave,
-                    ["lifes"] = lifes
+
+                    ["virus-count"] = virus_count
                 })
             end
         end
@@ -76,13 +87,13 @@ function GameOverState:render()
 
     -- info
     love.graphics.setFont(gFonts["medium"])
-    love.graphics.printf(loc[lang]["final-wave"] .. tostring(final_wave), 0, VIRTUAL_HEIGHT / 3 + 70,
+    love.graphics.printf(loc[lang]["final-wave"] .. tostring(wave), 0, VIRTUAL_HEIGHT / 3 + 70,
         VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["your-score"] .. tostring(player_score), 0, VIRTUAL_HEIGHT / 3 + 140,
+    love.graphics.printf(loc[lang]["your-score"] .. tostring(cell.score), 0, VIRTUAL_HEIGHT / 3 + 140,
         VIRTUAL_WIDTH / 2, 'center')
     love.graphics.printf(loc[lang]["bot-score"] .. tostring(bot_score), 0, VIRTUAL_HEIGHT / 3 + 210,
         VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["total-score"] .. tostring(player_score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280,
+    love.graphics.printf(loc[lang]["total-score"] .. tostring(cell.score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280,
         VIRTUAL_WIDTH / 2, 'center')
 
 

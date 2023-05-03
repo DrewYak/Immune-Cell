@@ -36,10 +36,7 @@ function StartState:update(dt)
         
         if highlighted == 1 then
             gStateMachine:change('infinity play', {
-                ["player-score"] = 0,
-                ["bot-score"] = 0,
                 ["wave"] = 1,
-                ["lifes"] = INITIAL_LIFES
             })
         end
 

@@ -1,39 +1,44 @@
 InfinityPlayState = Class{__includes = BaseState}
 
-local wave = 1
-local virus_count = INITIAL_VIRUS_COUNT
-local speed_coef = INITIAL_SPEED_COEF
-local time_start_wave = 0
-local bot_score = 0
-local lifes = 0
+local lifes
+local wave
+local cell
+local bot_cells
 
-function InfinityPlayState:init()
-    if self.bot_cells == nil then 
-        self.bot_cells = LevelMaker.createBotCells(COUNT_BOT_CELLS)
+local viruses
+local virus_count
+local virus_speed_coef
+local bot_score
+
+local time_start_wave
+
+function InfinityPlayState:enter(params)
+    wave = params["wave"]
+
+    if wave == 1 then
+        lifes = INITIAL_LIFES
+        cell = LevelMaker.createCell(false, 1)
+        bot_cells = LevelMaker.createBotCells(INITIAL_COUNT_BOT_CELLS)
+        bot_score = 0
+
+        virus_count = INITIAL_VIRUS_COUNT
+        virus_speed_coef = INITIAL_VIRUS_SPEED_COEF
+        viruses = LevelMaker.createViruses(virus_count, virus_speed_coef)
+    else
+        lifes = params["lifes"]
+        cell = params["cell"]
+        bot_cells = params["bot-cells"]
+        bot_score = params["bot-score"]
+
+        virus_count = params["virus-count"]
+        virus_speed_coef = INITIAL_VIRUS_SPEED_COEF + 0.5 * (wave - 1)
+        viruses = LevelMaker.createViruses(virus_count, virus_speed_coef)
     end
 
-    if self.cell == nil then 
-        self.cell = LevelMaker.createCell(false, 1)
-    end
+    time_start_wave = love.timer.getTime()
 
     gSounds['music']:play()
     gSounds['music']:setLooping(true)
-
-    self.viruses = LevelMaker.createViruses(virus_count, speed_coef)
-    time_start_wave = love.timer.getTime()
-end
-
-function InfinityPlayState:enter(params)
-    self.cell.score = params["player-score"]
-    bot_score = params["bot-score"]
-    wave = params["wave"]
-    lifes = params["lifes"]
-
-    speed_coef = 0.5 * (wave - 1)
-    if wave == 1 then
-        virus_count = INITIAL_VIRUS_COUNT
-        speed_coef = INITIAL_SPEED_COEF
-    end
 end
 
 function InfinityPlayState:update(dt)
@@ -50,29 +55,29 @@ function InfinityPlayState:update(dt)
         return
     end
 
-    for i, c in pairs(self.bot_cells) do
+    for i, c in pairs(bot_cells) do
         c:update(dt)
     end
 
-    self.cell:update(dt)
+    cell:update(dt)
 
-    for i, v in pairs(self.viruses) do
+    for i, v in pairs(viruses) do
         v:update(dt)
-        for j, c in pairs(self.bot_cells) do
+        for j, c in pairs(bot_cells) do
             if c:collides(v) then
                 v:hit()
-                table.remove(self.viruses, i)
+                table.remove(viruses, i)
                 c.score = c.score + 1
                 bot_score = bot_score + 1
                 break
             end
         end
 
-        if self.cell:collides(v) then 
+        if cell:collides(v) then 
             v:hit()
-            table.remove(self.viruses, i)
-            self.cell.score = self.cell.score + 1
-            if self.cell.score == LEVEL_UP_1 or self.cell.score == LEVEL_UP_2 or self.cell.score == LEVEL_UP_3 then
+            table.remove(viruses, i)
+            cell.score = cell.score + 1
+            if cell.score == LEVEL_UP_1 or cell.score == LEVEL_UP_2 or cell.score == LEVEL_UP_3 then
                 gSounds['level-up']:play()   
             end            
             break
@@ -84,36 +89,40 @@ function InfinityPlayState:update(dt)
             gSounds['lose']:play()
             gStateMachine:change('game over', {
                 ["status"] = 'lose',
-                ["player-score"] = self.cell.score,
-                ["bot-score"] = bot_score,
+                ["lifes"] = lifes,
                 ["wave"] = wave,
-                ["lifes"] = lifes
+                ["cell"] = cell,
+                ["bot-cells"] = bot_cells,
+
+                ["bot-score"] = bot_score,
+
+                ["virus-count"] = virus_count
             })
         end
     end
 
-    if table.getn(self.viruses) == 0 then
+    if table.getn(viruses) == 0 then
         wave = wave + 1
-        speed_coef = speed_coef + 0.5
+        virus_speed_coef = virus_speed_coef + 0.5
         virus_count = virus_count + math.random(1, 3)
 
         gSounds['short-victory']:play()
 
-        self.viruses = LevelMaker.createViruses(virus_count, speed_coef)
+        viruses = LevelMaker.createViruses(virus_count, virus_speed_coef)
         time_start_wave = love.timer.getTime()
     end
 end
 
 function InfinityPlayState:render()
-    for i, v in pairs(self.viruses) do
+    for i, v in pairs(viruses) do
         v:render()
     end
 
-    for i, c in pairs(self.bot_cells) do
+    for i, c in pairs(bot_cells) do
         c:render()
     end
 
-    self.cell:render()
+    cell:render()
 
     if love.timer.getTime() - time_start_wave < 2 then
         love.graphics.setFont(gFonts['large'])
@@ -123,8 +132,8 @@ function InfinityPlayState:render()
 
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(1, 1, 1, 1)        
-    love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(self.viruses)), 105, 5)
-    love.graphics.print(loc[lang]["your-score"] .. tostring(self.cell.score), 245, 5)
+    love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(viruses)), 105, 5)
+    love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 245, 5)
     love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 425, 5)
     love.graphics.print(tostring(lifes), VIRTUAL_WIDTH - 30, 5)
 end
