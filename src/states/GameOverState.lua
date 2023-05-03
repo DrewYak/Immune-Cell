@@ -1,6 +1,6 @@
 GameOverState = Class{__includes = BaseState}
 
-local highlighted = 1
+local highlighted
 local status
 
 local lifes
@@ -21,19 +21,37 @@ function GameOverState:enter(params)
     bot_score = params["bot-score"]
 
     virus_count = params["virus-count"]
+
+    if lifes > 0 then
+        highlighted = 1
+    else
+        highlighted = 2
+    end
 end
 
 function GameOverState:update(dt)
     if love.keyboard.wasPressed('down') then
-        highlighted = 1 + highlighted % 4
+        if lifes > 0 then
+            highlighted = 1 + highlighted % 4
+        else 
+            highlighted = 2 + (highlighted - 1) % 3
+        end
         gSounds['hit']:play()
     end
 
     if love.keyboard.wasPressed('up') then
-        if highlighted == 1 then
-            highlighted = 4
+        if lifes > 0 then
+            if highlighted == 1 then
+                highlighted = 4
+            else
+                highlighted = highlighted - 1
+            end
         else
-            highlighted = highlighted - 1
+            if highlighted == 2 then
+                highlighted = 4
+            else
+                highlighted = highlighted - 1
+            end
         end
         gSounds['hit']:play()
     end
