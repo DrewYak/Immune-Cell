@@ -40,6 +40,12 @@ function StartState:update(dt)
             })
         end
 
+        if highlighted == 2 then
+            gStateMachine:change('high scores', {
+                ["source-state"] = 'start'
+            })
+        end
+
         if highlighted == 3 then
             if lang == "en" then
                 lang = "ru"

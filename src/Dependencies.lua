@@ -32,5 +32,6 @@ require 'src/Util'
 -- each frame, to avoid bulky code in main.lua
 require 'src/states/BaseState'
 require 'src/states/StartState'
+ require 'src/states/HighScoresState'
 require 'src/states/InfinityPlayState'
 require 'src/states/GameOverState'

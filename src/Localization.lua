@@ -18,7 +18,11 @@ loc = {
 		["wave"] = "WAVE ",
 		["you-win"] = "YOU WIN!",
 		["continue"] = "CONTINUE",
-		["main-menu"] = "MAIN MENU"
+		["main-menu"] = "MAIN MENU",
+		["final-waves"] = "Final waves",
+		["your-scores"] = "Your scores",
+		["bot-scores"] = "Bot scores",
+		["total-scores"] = "Total scores"
 	},
 
 
@@ -39,6 +43,10 @@ loc = {
 		["you-lose"] = "ВЫ ПРОИГРАЛИ!",
 		["you-win"] = "ВЫ ПОБЕДИДИ!",
 		["continue"] = "ПРОДОЛЖИТЬ",
-		["main-menu"] = "ГЛАВНОЕ МЕНЮ"
+		["main-menu"] = "ГЛАВНОЕ МЕНЮ",
+		["final-waves"] = "Финальные волны",
+		["your-scores"] = "Очки ваши",
+		["bot-scores"] = "Очки ботов",
+		["total-scores"] = "Очки суммарные"		
 	}
 }

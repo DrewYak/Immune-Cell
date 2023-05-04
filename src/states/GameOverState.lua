@@ -12,20 +12,22 @@ local bot_score
 local virus_count
 
 function GameOverState:enter(params)
-	status = params["status"]
-    lifes = params["lifes"]
-    wave = params["wave"]
-    cell = params["cell"]
-    bot_cells = params["bot-cells"]
+    if params ~= nil then
+    	status = params["status"]
+        lifes = params["lifes"]
+        wave = params["wave"]
+        cell = params["cell"]
+        bot_cells = params["bot-cells"]
 
-    bot_score = params["bot-score"]
+        bot_score = params["bot-score"]
 
-    virus_count = params["virus-count"]
+        virus_count = params["virus-count"]
 
-    if lifes > 0 then
-        highlighted = 1
-    else
-        highlighted = 2
+        if lifes > 0 then
+            highlighted = 1
+        else
+            highlighted = 2
+        end
     end
 end
 
@@ -68,6 +70,12 @@ function GameOverState:update(dt)
                 ["bot-score"] = bot_score,
 
                 ["virus-count"] = virus_count
+            })
+        end
+
+        if highlighted == 2 then
+            gStateMachine:change('high scores', {
+                ["source-state"] = "game over"
             })
         end
 

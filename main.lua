@@ -82,6 +82,7 @@ function love.load()
     -- 1. 'start' (the beginning of the game, where we're told to press Enter)
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
+        ['high scores'] = function() return HighScoresState() end,
         ['infinity play'] = function() return InfinityPlayState() end,
         ['game over'] = function() return GameOverState() end
     }
