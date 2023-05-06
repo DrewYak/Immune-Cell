@@ -29,7 +29,7 @@ function GameOverState:enter(params)
             highlighted = 2
         end
 
-        if lifes >= 0 then
+        if lifes == 0 then
             table.insert(high_scores['waves'], wave)
             table.sort(high_scores['waves'], function(a, b) return a > b end)
             table.insert(high_scores['your-scores'], cell.score)
@@ -38,6 +38,36 @@ function GameOverState:enter(params)
             table.sort(high_scores['bot-scores'], function(a, b) return a > b end)
             table.insert(high_scores['total-scores'], cell.score + bot_score)
             table.sort(high_scores['total-scores'], function(a, b) return a > b end)
+
+            local scores = ''
+            local t = {}
+            
+            scores = scores .. 'waves\n'
+            
+            t = high_scores['waves']
+            for i = 1, #t do
+                scores = scores .. t[i] .. '\n'
+            end
+
+            scores = scores .. 'your-scores\n'
+            t = high_scores['your-scores']
+            for i = 1, #t do
+                scores = scores .. t[i] .. '\n'
+            end
+
+            scores = scores .. 'bot-scores\n'
+            t = high_scores['bot-scores']
+            for i = 1, #t do
+                scores = scores .. t[i] .. '\n'
+            end
+
+            scores = scores .. 'total-scores\n'
+            t = high_scores['total-scores']
+            for i = 1, #t do
+                scores = scores .. t[i] .. '\n'
+            end
+
+            love.filesystem.write('virus-catcher.lst', scores)
         end
     end
 end
@@ -125,11 +155,8 @@ function GameOverState:render()
     love.graphics.printf(loc[lang]["total-score"] .. tostring(cell.score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280,
         VIRTUAL_WIDTH / 2, 'center')
 
-
-
 	-- menu
     love.graphics.setFont(gFonts['medium'])
-
 
     if lifes > 0 then
         -- Available menu items: "continue" and "high-scores"
@@ -197,60 +224,6 @@ function GameOverState:render()
                 VIRTUAL_WIDTH / 2, 'center')
         end
     end
-
-
-    -- if highlighted == 1 then
-    --     if lifes > 0 then
-    --         love.graphics.setColor(178/255, 42/255, 28/255, 1)
-    --         love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-    --             VIRTUAL_WIDTH / 2, 'center')
-    --     else
-    --         love.graphics.setColor(128/255, 128/255, 128/255, 1)
-    --         love.graphics.printf("=> " .. loc[lang]["continue"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-    --             VIRTUAL_WIDTH / 2, 'center')
-    --     end            
-    -- else
-    --     if lifes > 0 then
-    --         love.graphics.setColor(1, 1, 1, 1)
-    --         love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-    --             VIRTUAL_WIDTH / 2, 'center')
-    --     else
-    --         love.graphics.setColor(128/255, 128/255, 128/255, 1)
-    --         love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-    --             VIRTUAL_WIDTH / 2, 'center')
-    --     end            
-    -- end
-
-    -- if highlighted == 2 then
-    --     love.graphics.setColor(178/255, 42/255, 28/255, 1)
-    --     love.graphics.printf("=> " .. loc[lang]["high-scores"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 140,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- else
-    --     love.graphics.setColor(1, 1, 1, 1)
-    --     love.graphics.printf(loc[lang]["high-scores"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 140,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- end
-
-    -- if highlighted == 3 then
-    --     love.graphics.setColor(178/255, 42/255, 28/255, 1)
-    --     love.graphics.printf("=> " .. loc[lang]["main-menu"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 210,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- else
-    --     love.graphics.setColor(1, 1, 1, 1)
-    --     love.graphics.printf(loc[lang]["main-menu"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 210,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- end
-
-    -- if highlighted == 4 then
-    --     love.graphics.setColor(178/255, 42/255, 28/255, 1)
-    --     love.graphics.printf("=> " .. loc[lang]["exit"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 280,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- else
-    --     love.graphics.setColor(1, 1, 1, 1)
-    --     love.graphics.printf(loc[lang]["exit"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 280,
-    --         VIRTUAL_WIDTH / 2, 'center')
-    -- end
-
 
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(1, 1, 1, 1)        

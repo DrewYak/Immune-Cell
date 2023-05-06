@@ -2,10 +2,7 @@
     Author: Iakovlichev Andrew
     DrewYak7@gmail.com
 
-	A game in which the immune cell must eat viruses and bacteria.
-
-    Credit for graphics:
-    https://opengameart.org/users/buch
+	A game in which the immune cell with bot-cells must catch and eat viruses and bacteria.
 
     Credit for music:
     https://freesound.org/people/joshuaempyre/sounds/251461/
@@ -77,9 +74,6 @@ function love.load()
     -- the state machine we'll be using to transition between various states
     -- in our game instead of clumping them together in our update and draw
     -- methods
-    --
-    -- our current game state can be any of the following:
-    -- 1. 'start' (the beginning of the game, where we're told to press Enter)
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
         ['high scores'] = function() return HighScoresState() end,
@@ -87,6 +81,8 @@ function love.load()
         ['game over'] = function() return GameOverState() end
     }
     gStateMachine:change('start')
+
+    loadHighScores()
 
     -- a table we'll use to keep track of which keys have been pressed this
     -- frame, to get around the fact that LÖVE's default callback won't let us
@@ -180,4 +176,27 @@ function displayFPS()
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(0, 1, 0, 1)
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
+end
+
+function loadHighScores()
+    love.filesystem.setIdentity('virus-catcher')
+
+    if not love.filesystem.getInfo('virus-catcher.lst') then
+        local scores = ''
+        scores = scores .. 'waves\n' .. '0\n'
+        scores = scores .. 'your-scores\n' ..'0\n'
+        scores = scores .. 'bot-scores\n' ..'0\n'
+        scores = scores .. 'total-scores\n' ..'0\n'        
+        love.filesystem.write('virus-catcher.lst', scores)
+    end
+
+    local n
+    for line in love.filesystem.lines('virus-catcher.lst') do
+        n = tonumber(line) 
+        if n == nil then
+            t = high_scores[string.gsub(line, "\n", "")] 
+        else
+            table.insert(t, n)
+        end
+    end
 end
