@@ -1,10 +1,10 @@
 HighScoresState = Class{__includes = BaseState}
 
 high_scores = {
-	['waves'] = {3, 2, 1},
-	['your-scores'] = {60, 40, 20},
-	['bot-scores'] = {30, 20, 10},
-	['total-scores'] = {100, 90, 80}
+	['waves'] = {0},
+	['your-scores'] = {0},
+	['bot-scores'] = {0},
+	['total-scores'] = {0}
 }
 
 local line_interval = 40
