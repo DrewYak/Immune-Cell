@@ -46,13 +46,13 @@ end
 
 function InfinityPlayState:update(dt)
     if self.paused then
-        if love.keyboard.wasPressed('space') then
+        if love.keyboard.wasPressed('space') or love.keyboard.wasPressed('escape') then
             self.paused = false
             gSounds['pause']:play()
         else
             return
         end
-    elseif love.keyboard.wasPressed('space') then
+    elseif love.keyboard.wasPressed('space') or love.keyboard.wasPressed('escape') then
         self.paused = true
         gSounds['pause']:play()
         return
@@ -146,4 +146,10 @@ function InfinityPlayState:render()
     love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 235, 5)
     love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 415, 5)
     love.graphics.printf(loc[lang]["lifes"] .. tostring(lifes), VIRTUAL_WIDTH - 125, 5, 115, "right")
+
+    if self.paused then
+        love.graphics.setFont(gFonts['large'])
+        love.graphics.setColor(1/255, 102/255, 169/255, 1)        
+        love.graphics.printf(loc[lang]["pause"], 0, VIRTUAL_HEIGHT / 4, VIRTUAL_WIDTH, "center")
+    end
 end

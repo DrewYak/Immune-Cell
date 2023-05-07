@@ -22,7 +22,8 @@ loc = {
 		["final-waves"] = "Final waves",
 		["your-scores"] = "Your scores",
 		["bot-scores"] = "Bot scores",
-		["total-scores"] = "Total scores"
+		["total-scores"] = "Total scores",
+		["pause"] = "PAUSE"
 	},
 
 
@@ -47,6 +48,7 @@ loc = {
 		["final-waves"] = "Финальные волны",
 		["your-scores"] = "Очки ваши",
 		["bot-scores"] = "Очки ботов",
-		["total-scores"] = "Очки суммарные"		
+		["total-scores"] = "Очки суммарные",
+		["pause"] = "ПАУЗА"		
 	}
 }
