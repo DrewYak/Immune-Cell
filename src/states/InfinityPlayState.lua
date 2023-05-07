@@ -157,9 +157,9 @@ function InfinityPlayState:render()
 
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(1, 1, 1, 1)        
-    love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(viruses)), 105, 5)
-    love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 235, 5)
-    love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 415, 5)
+    love.graphics.print(loc[lang]["wave-info"] .. tostring(wave) .. ':' .. tostring(table.getn(viruses)), 8, 5)
+    love.graphics.print(loc[lang]["your-score"] .. tostring(cell.score), 135, 5)
+    love.graphics.print(loc[lang]["bot-score"] .. tostring(bot_score), 315, 5)
     love.graphics.printf(loc[lang]["lifes"] .. tostring(lifes), VIRTUAL_WIDTH - 125, 5, 115, "right")
 
     if self.paused then
