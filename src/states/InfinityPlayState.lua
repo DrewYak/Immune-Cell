@@ -92,7 +92,22 @@ function InfinityPlayState:update(dt)
         if v.x > WINDOW_WIDTH + 50 then
             lifes = lifes - 1
             gSounds['music']:stop()
-            gSounds['lose']:play()
+
+            if lifes == 0 then
+                local is_record_wave = wave > high_scores['waves'][1]
+                local is_record_your_scores = cell.score > high_scores["your-scores"][1]
+                local is_record_bot_scores = bot_score > high_scores['bot-scores'][1]
+                local is_record_total_scores = cell.score + bot_score > high_scores["your-scores"][1] + high_scores['bot-scores'][1]
+
+                if is_record_wave or is_record_your_scores or is_record_bot_scores or is_record_total_scores then
+                    gSounds['victory']:play()
+                else
+                    gSounds['lose']:play()
+                end 
+            else                   
+                gSounds['lose']:play()
+            end
+            
             gStateMachine:change('game over', {
                 ["status"] = 'lose',
                 ["lifes"] = lifes,

@@ -11,6 +11,11 @@ local bot_score
 
 local virus_count
 
+local is_record_wave
+local is_record_your_scores
+local is_record_bot_scores
+local is_record_total_scores
+
 function GameOverState:enter(params)
     if params ~= nil then
     	status = params["status"]
@@ -29,7 +34,17 @@ function GameOverState:enter(params)
             highlighted = 2
         end
 
+
         if lifes == 0 then
+            is_record_wave = wave > high_scores['waves'][1]
+            is_record_your_scores = cell.score > high_scores["your-scores"][1]
+            is_record_bot_scores = bot_score > high_scores['bot-scores'][1]
+            is_record_total_scores = cell.score + bot_score > high_scores["your-scores"][1] + high_scores['bot-scores'][1]
+
+            if is_record_wave or is_record_your_scores or is_record_bot_scores or is_record_total_scores then
+                gSounds['victory']:play()
+            end
+
             table.insert(high_scores['waves'], wave)
             table.sort(high_scores['waves'], function(a, b) return a > b end)
             table.insert(high_scores['your-scores'], cell.score)
@@ -132,24 +147,27 @@ end
 
 function GameOverState:render()
 	love.graphics.setFont(gFonts['large'])
-    if status == "win" then
-	   love.graphics.printf(loc[lang]["you-win"], 0, VIRTUAL_HEIGHT / 4, 
-    		VIRTUAL_WIDTH, 'center')
-    elseif status == "lose" then
-       love.graphics.printf(loc[lang]["you-lose"], 0, VIRTUAL_HEIGHT / 4, 
-            VIRTUAL_WIDTH, 'center')        
+    if is_record_wave or is_record_your_scores or is_record_bot_scores or is_record_total_scores then
+        love.graphics.setColor(1/255, 102/255, 169/255, 1)
+        love.graphics.printf(loc[lang]["new-record"], 0, VIRTUAL_HEIGHT / 8 - 20, VIRTUAL_WIDTH, 'center')
     end
+    love.graphics.setColor(1, 1, 1, 1)  
+    love.graphics.printf(loc[lang]["remaining-lives"] .. tostring(lifes), 0, VIRTUAL_HEIGHT / 4, VIRTUAL_WIDTH, 'center')
 
     -- info
     love.graphics.setFont(gFonts["medium"])
-    love.graphics.printf(loc[lang]["final-wave"] .. tostring(wave), 0, VIRTUAL_HEIGHT / 3 + 70,
-        VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["your-score"] .. tostring(cell.score), 0, VIRTUAL_HEIGHT / 3 + 140,
-        VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["bot-score"] .. tostring(bot_score), 0, VIRTUAL_HEIGHT / 3 + 210,
-        VIRTUAL_WIDTH / 2, 'center')
-    love.graphics.printf(loc[lang]["total-score"] .. tostring(cell.score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280,
-        VIRTUAL_WIDTH / 2, 'center')
+    love.graphics.setColor(1, 1, 1, 1)  
+    if is_record_wave then love.graphics.setColor(1/255, 102/255, 169/255, 1) else love.graphics.setColor(1, 1, 1, 1) end
+    love.graphics.printf(loc[lang]["final-wave"] .. tostring(wave), 0, VIRTUAL_HEIGHT / 3 + 70, VIRTUAL_WIDTH / 2, 'center')
+
+    if is_record_your_scores then love.graphics.setColor(1/255, 102/255, 169/255, 1) else love.graphics.setColor(1, 1, 1, 1) end
+    love.graphics.printf(loc[lang]["your-score"] .. tostring(cell.score), 0, VIRTUAL_HEIGHT / 3 + 140, VIRTUAL_WIDTH / 2, 'center')
+
+    if is_record_bot_scores then love.graphics.setColor(1/255, 102/255, 169/255, 1) else love.graphics.setColor(1, 1, 1, 1) end
+    love.graphics.printf(loc[lang]["bot-score"] .. tostring(bot_score), 0, VIRTUAL_HEIGHT / 3 + 210, VIRTUAL_WIDTH / 2, 'center')
+
+    if is_record_total_scores then love.graphics.setColor(1/255, 102/255, 169/255, 1) else love.graphics.setColor(1, 1, 1, 1) end
+    love.graphics.printf(loc[lang]["total-score"] .. tostring(cell.score + bot_score), 0, VIRTUAL_HEIGHT / 3 + 280, VIRTUAL_WIDTH / 2, 'center')
 
 	-- menu
     love.graphics.setFont(gFonts['medium'])
@@ -175,21 +193,8 @@ function GameOverState:render()
             love.graphics.printf(loc[lang]["high-scores"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 140,
                 VIRTUAL_WIDTH / 2, 'center')
         end
-                            
-        love.graphics.setColor(128/255, 128/255, 128/255, 1)
-        love.graphics.printf(loc[lang]["main-menu"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 210,
-            VIRTUAL_WIDTH / 2, 'center')
-
-        love.graphics.setColor(128/255, 128/255, 128/255, 1)
-        love.graphics.printf(loc[lang]["exit"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 280,
-            VIRTUAL_WIDTH / 2, 'center')
-
     else
         -- Available menu items: "high-scores", "main-menu" and "exit"
-        love.graphics.setColor(128/255, 128/255, 128/255, 1)
-        love.graphics.printf(loc[lang]["continue"], WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 70,
-            VIRTUAL_WIDTH / 2, 'center')
-
         if highlighted == 2 then
             love.graphics.setColor(178/255, 42/255, 28/255, 1)
             love.graphics.printf("=> " .. loc[lang]["high-scores"] .. " <=", WINDOW_WIDTH / 2, VIRTUAL_HEIGHT / 3 + 140,
@@ -220,8 +225,4 @@ function GameOverState:render()
                 VIRTUAL_WIDTH / 2, 'center')
         end
     end
-
-    love.graphics.setFont(gFonts['small'])
-    love.graphics.setColor(1, 1, 1, 1)        
-    love.graphics.print(tostring(lifes), VIRTUAL_WIDTH - 30, 5)
 end

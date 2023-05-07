@@ -12,18 +12,18 @@ loc = {
 		["bot-score"] = "Bot score: ",
 		["total-score"] = "Total score: ",
 		["wave-info"] = "Wave ",
-		["lifes"] = "Lifes: ",
+		["lifes"] = "Lives: ",
 		["final-wave"] = "Final wave: ",
-		["you-lose"] = "YOU LOSE!",
 		["wave"] = "WAVE ",
-		["you-win"] = "YOU WIN!",
 		["continue"] = "CONTINUE",
 		["main-menu"] = "MAIN MENU",
 		["final-waves"] = "Final waves",
 		["your-scores"] = "Your scores",
 		["bot-scores"] = "Bot scores",
 		["total-scores"] = "Total scores",
-		["pause"] = "PAUSE"
+		["pause"] = "PAUSE",
+		["remaining-lives"] = "REMAINING LIVES: ",
+		["new-record"] = "NEW RECORD!"
 	},
 
 
@@ -41,14 +41,14 @@ loc = {
 		["lifes"] = "Жизни:  ",
 		["final-wave"] = "Финальная волна: ",
 		["wave"] = "ВОЛНА ",
-		["you-lose"] = "ВЫ ПРОИГРАЛИ!",
-		["you-win"] = "ВЫ ПОБЕДИДИ!",
 		["continue"] = "ПРОДОЛЖИТЬ",
 		["main-menu"] = "ГЛАВНОЕ МЕНЮ",
 		["final-waves"] = "Финальные волны",
 		["your-scores"] = "Очки ваши",
 		["bot-scores"] = "Очки ботов",
 		["total-scores"] = "Очки суммарные",
-		["pause"] = "ПАУЗА"		
+		["pause"] = "ПАУЗА",
+		["remaining-lives"] = "ОСТАЛОСЬ ЖИЗНЕЙ: ",
+		["new-record"] = "НОВЫЙ РЕКОРД!"		
 	}
 }
