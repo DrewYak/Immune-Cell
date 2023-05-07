@@ -21,6 +21,10 @@ function HighScoresState:update(dt)
 end
 
 function HighScoresState:render()
+	love.graphics.setFont(gFonts['small'])
+	love.graphics.setColor(178/255, 42/255, 28/255, 1)
+	love.graphics.print(loc[lang]['click-esc'], 20, 80)
+
 	love.graphics.setFont(gFonts['large'])
 	love.graphics.setColor(1/255, 102/255, 169/255, 1)
 	love.graphics.printf(loc[lang]["high-scores"], 0, 60, VIRTUAL_WIDTH, "center")	

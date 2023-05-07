@@ -23,7 +23,8 @@ loc = {
 		["total-scores"] = "Total scores",
 		["pause"] = "PAUSE",
 		["remaining-lives"] = "REMAINING LIVES: ",
-		["new-record"] = "NEW RECORD!"
+		["new-record"] = "NEW RECORD!",
+		['click-esc'] = "*Click ESC\nto return"
 	},
 
 
@@ -49,6 +50,7 @@ loc = {
 		["total-scores"] = "Очки суммарные",
 		["pause"] = "ПАУЗА",
 		["remaining-lives"] = "ОСТАЛОСЬ ЖИЗНЕЙ: ",
-		["new-record"] = "НОВЫЙ РЕКОРД!"		
+		["new-record"] = "НОВЫЙ РЕКОРД!",		
+		['click-esc'] = "*Нажмите ESC,\nчтобы вернуться"
 	}
 }
