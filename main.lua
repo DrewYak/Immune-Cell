@@ -28,6 +28,7 @@ function love.load()
     math.randomseed(os.time())
 
     love.window.setTitle('Virus Catcher')
+    love.window.setIcon(love.image.newImageData('graphics/window_icon.png'))
 
     gFonts = {
         ['small'] = love.graphics.newFont('fonts/ShantellSans-MediumItalic.ttf', 20),
