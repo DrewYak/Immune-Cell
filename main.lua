@@ -1,10 +1,10 @@
 --[[
-    Author: Iakovlichev Andrew
+    Author: Andrew Iakovlichev 
     DrewYak7@gmail.com
 
 	A game in which the immune cell with bot-cells must catch and eat viruses and bacteria.
 
-    Credit for music:
+    Music and sounds:
     https://freesound.org/people/joshuaempyre/sounds/251461/
     https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/
     https://freesound.org/people/shinephoenixstormcrow/sounds/337049/

@@ -83,6 +83,11 @@ function GameOverState:enter(params)
             end
 
             love.filesystem.write('virus-catcher.lst', scores)
+        else
+            is_record_wave = false
+            is_record_your_scores = false
+            is_record_bot_scores = false
+            is_record_total_scores = false
         end
     end
 end
