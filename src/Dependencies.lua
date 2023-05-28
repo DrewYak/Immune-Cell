@@ -18,8 +18,8 @@ require 'src/constants'
 require 'src/Localization'
 
 require 'src/Virus'
-require 'src/LevelMaker'
 require 'src/Cell'
+require 'src/LevelMaker'
 
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
@@ -32,6 +32,6 @@ require 'src/Util'
 -- each frame, to avoid bulky code in main.lua
 require 'src/states/BaseState'
 require 'src/states/StartState'
- require 'src/states/HighScoresState'
+require 'src/states/HighScoresState'
 require 'src/states/InfinityPlayState'
 require 'src/states/GameOverState'

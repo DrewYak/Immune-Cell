@@ -7,23 +7,26 @@ loc = {
 		["high-scores"] = "HIGH SCORES",
 		["language"] = "LANGUAGE: EN",
 		["exit"] = "EXIT",
-		["fps"] = "FPS",
+
 		["your-score"] = "Your score: ",
 		["bot-score"] = "Bot score: ",
 		["total-score"] = "Total score: ",
 		["wave-info"] = "Wave ",
 		["lifes"] = "Lives: ",
-		["final-wave"] = "Final wave: ",
 		["wave"] = "WAVE ",
-		["continue"] = "CONTINUE",
-		["main-menu"] = "MAIN MENU",
-		["final-waves"] = "Final waves",
+		["pause"] = "PAUSE",
+
+		["final-wave"] = "Final wave: ",
 		["your-scores"] = "Your scores",
 		["bot-scores"] = "Bot scores",
 		["total-scores"] = "Total scores",
-		["pause"] = "PAUSE",
+
+		["continue"] = "CONTINUE",
+		["main-menu"] = "MAIN MENU",
 		["remaining-lives"] = "REMAINING LIVES: ",
 		["new-record"] = "NEW RECORD!",
+
+		["final-waves"] = "Final waves",
 		['click-esc'] = "*Click ESC\nto return"
 	},
 
@@ -34,23 +37,26 @@ loc = {
 		["high-scores"] = "РЕКОРДЫ",
 		["language"] = "ЯЗЫК: РУ",
 		["exit"] = "ВЫХОД",
-		["fps"] = "FPS",
+
 		["your-score"] = "Очки ваши: ",
 		["bot-score"] = "Очки ботов: ",
 		["total-score"] = "Очки суммарные: ",
 		["wave-info"] = "Волна ",
 		["lifes"] = "Жизни:  ",
-		["final-wave"] = "Финальная волна: ",
 		["wave"] = "ВОЛНА ",
-		["continue"] = "ПРОДОЛЖИТЬ",
-		["main-menu"] = "ГЛАВНОЕ МЕНЮ",
-		["final-waves"] = "Финальные волны",
+		["pause"] = "ПАУЗА",
+
+		["final-wave"] = "Финальная волна: ",
 		["your-scores"] = "Очки ваши",
 		["bot-scores"] = "Очки ботов",
 		["total-scores"] = "Очки суммарные",
-		["pause"] = "ПАУЗА",
+
+		["continue"] = "ПРОДОЛЖИТЬ",
+		["main-menu"] = "ГЛАВНОЕ МЕНЮ",
 		["remaining-lives"] = "ОСТАЛОСЬ ЖИЗНЕЙ: ",
 		["new-record"] = "НОВЫЙ РЕКОРД!",		
+
+		["final-waves"] = "Финальные волны",
 		['click-esc'] = "*Нажмите ESC,\nчтобы вернуться"
 	}
 }

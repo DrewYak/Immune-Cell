@@ -7,8 +7,7 @@ function Virus:init(number, shiftLeft, speed_coef)
 	self.height = 256
 
 	self.x = -self.width * VIRUS_SCALE - shiftLeft
-	self.y = math.random(self.height * VIRUS_SCALE / 2, 
-		VIRTUAL_HEIGHT - self.height * VIRUS_SCALE / 2)
+	self.y = math.random(self.height * VIRUS_SCALE / 2, VIRTUAL_HEIGHT - self.height * VIRUS_SCALE / 2)
 	self.r = math.random() * 2 * math.pi
 	self.direction = math.random(0, 1) * 2 - 1
 
@@ -38,9 +37,8 @@ end
 
 function Virus:render()
 	if self.inPlay then
-		love.graphics.draw(gTextures['viruses'],
-			gFrames['viruses'][self.number],
-			self.x, self.y, self.r, 
-			VIRUS_SCALE, VIRUS_SCALE, self.width / 2, self.height / 2)
+		love.graphics.draw(gTextures['viruses'], gFrames['viruses'][self.number],
+			self.x, self.y, self.r, VIRUS_SCALE, VIRUS_SCALE, 
+			self.width / 2, self.height / 2)
 	end
 end

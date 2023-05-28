@@ -163,20 +163,19 @@ function love.draw()
     -- use the state machine to defer rendering to the current state we're in
     gStateMachine:render()
     
-    -- display FPS for debugging; simply comment out to remove
+    -- display FPS for debugging
+    -- comment out to remove and
+    -- uncomment to use
     -- displayFPS()
     
     push:apply('end')
 end
 
---[[
-    Renders the current FPS.
-]]
 function displayFPS()
     -- simple FPS display across all states
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
+    love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 8, 35)
 end
 
 function loadHighScores()
